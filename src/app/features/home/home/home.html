@@ -1,0 +1,79 @@
+<section class="hero-section">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1>
+        <span class="code-intro">Hello World/></span><br>
+        <span class="highlight">Álvaro Gómez</span>,
+        <br>
+        Desarrollador <span class="highlight">Full-stack</span> Junior.
+      </h1>
+
+      <p class="tagline">
+        Transformo ideas innovadoras en soluciones web robustas y escalables,
+        abarcando desde el diseño de interfaz de usuario hasta la lógica del servidor.
+        Mi pasión radica en construir experiencias digitales fluidas y eficientes,
+        siempre aprendiendo y adaptándome a las últimas tecnologías.
+      </p>
+
+      <div class="hero-actions">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/alvaro-gn/" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/Algoniet" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+
+        <div class="cta-buttons">
+          <a href="assets/docs/curriculum-alvaro-gomez.pdf" download="curriculum-alvaro-gomez.pdf" class="btn btn-secondary">
+            Descargar CV
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/images/about-me-profile.jpg" alt="Tu Foto de Perfil" class="profile-pic" style="view-transition-name: profile;">
+    </div>
+  </div>
+</section>
+
+<section id="latestSection" class="latest-section">
+  <div class="container">
+    <h2 class="section-title">Lo Más Reciente</h2>
+    <div class="latest-grid">
+      <div #experienceCard class="latest-card experience-card">
+        <h3 class="card-title"><i class="fa-solid fa-briefcase"></i> Última Experiencia Laboral</h3>
+        <p class="card-subtitle">Desarrollador Full-Stack en Pentec</p>
+        <p class="card-date">Febrero 2024 - Actual</p>
+        <p class="card-description">
+          Desarrollo y mantenimiento de interfaces de usuario para aplicaciones web escalables utilizando Angular y
+          TypeScript. Colaboración en equipos ágiles.
+        </p>
+        <a [routerLink]="['/about']" class="card-link">Ver más en Sobre Mí <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div #projectCard class="latest-card project-card ">
+        <h3 class="card-title"><i class="fa-solid fa-code"></i> Último Proyecto Destacado</h3>
+        <p class="card-subtitle">Plataforma de Gestión de Contenidos</p>
+        <p class="card-date">Junio 2024</p>
+        <p class="card-description">
+          Diseño y desarrollo de un sistema CMS personalizado con React y Node.js, incluyendo autenticación de usuarios
+          y API RESTful.
+        </p>
+        <a [routerLink]="['/projects']" class="card-link">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-cta-section">
+  <div class="container">
+    <h2 class="cta-title">¿Listo para construir tu visión?</h2>
+    <p class="cta-description">Hablemos de cómo mis habilidades pueden impulsar tu próximo proyecto.</p>
+    <a [routerLink]="['/contact']" class="btn btn-primary cta-button">
+      Contactar Ahora <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</section>

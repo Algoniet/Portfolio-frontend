@@ -1,0 +1,22 @@
+<section class="projects-section">
+  <div class="project-main-content">
+
+    <h2 class="section-title">Mis Proyectos</h2>
+    <p class="section-description">
+      Aquí puedes explorar una selección de mis trabajos más recientes y destacados. Cada proyecto refleja mi pasión por crear soluciones web innovadoras y eficientes.
+    </p>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.title) {
+        <app-project-card
+          [title]="project.title"
+          [description]="project.description"
+          [imageUrl]="project.imageUrl"
+          [technologyIcons]="project.technologyIcons" 
+          [liveDemoUrl]="project.liveDemoUrl"
+          [githubUrl]="project.githubUrl"
+        ></app-project-card>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+<section class="about-section">
+  <div class="about-main-content">
+
+    <div class="intro-and-tech-section">
+      <div class="image-and-intro-text-row">
+        <div class="hero-image-container">
+          <img src="assets/images/about-me-profile.jpg" alt="Tu Foto de Perfil" class="profile-pic" style="view-transition-name: profile;">
+        </div>
+
+        <p class="intro-text">
+          Soy un apasionado **Desarrollador Full-stack Junior** con experiencia en la creación de soluciones web robustas y escalables. Mi viaje en la programación me ha permitido sumergirme en tecnologías frontend como **Angular** y **React**, y backend con **Node.js** y **Spring Boot**. Me encanta transformar ideas en código funcional y eficiente, siempre buscando aprender y mejorar mis habilidades para construir productos que generen un impacto positivo.
+        </p>
+      </div>
+
+      <div class="tech-stack-wrapper">
+        <div class="tech-category-group">
+          <h3 class="titulo"><i class="fas fa-code"></i> Frontend</h3> 
+          <div class="tech-category">
+            <div class="tech-grid">
+              @for (tech of frontendTechnologies; track $index) {
+                <div class="tech-item">
+                  <i class="tech-icon {{ tech.icon }}"></i>
+                  <span class="tech-name">{{ tech.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="tech-category-group">
+          <h3 class="titulo"><i class="fas fa-server"></i> Backend & Bases de Datos</h3>
+          <div class="tech-category">
+            <div class="tech-grid">
+              @for (tech of backendTechnologies; track $index) {
+                <div class="tech-item">
+                  <i class="tech-icon {{ tech.icon }}"></i>
+                  <span class="tech-name">{{ tech.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns-wrapper">
+      <div class="column-group education-group">
+        <h3 class="titulo"><i class="fa-solid fa-graduation-cap"></i> Formación</h3>
+        <div class="column education-column">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Grado Superior en Desarrollo de Aplicaciones Multiplataforma</h4>
+                <p class="institution">Progresa</p>
+                <p class="date">Septiembre 2020 - Junio 2022</p>
+                <p class="description">
+                  Enfocado en el desarrollo Multiplataforma con tecnologías como Java, Angular, TypeScript, SQL, HTML y CSS ,Android Studio y Swift. Realización de proyectos integrales y prácticas en empresa.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Curso de Desarrollo Web Full Stack</h4>
+                <p class="institution">Open Bootcamp</p>
+                <p class="date">Enero 2022 - Junio 2022</p>
+                <p class="description">
+                  Aprendizaje intensivo en JavaScript, Node.js, Express.js, React, MongoDB y Git. Desarrollo de aplicaciones web completas.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="column-group experience-group">
+        <h3 class="titulo"><i class="fa-solid fa-briefcase"></i> Experiencia Laboral</h3> 
+        <div class="column experience-column">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Desarrollador Full-stack Junior</h4>
+                <p class="company">Pentec</p>
+                <p class="date">Febrero 2024 - Actual</p>
+                <p class="description">
+                  Desarrollo y mantenimiento de interfaces de usuario para aplicaciones web escalables utilizando Angular y TypeScript junto a Java Spring en el Back. Colaboración en equipos ágiles, implementación de nuevas funcionalidades y optimización de rendimiento.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Asistente Técnico IT</h4>
+                <p class="company">TechSolutions S.L.</p>
+                <p class="date">Julio 2021 - Diciembre 2021</p>
+                <p class="description">
+                  Soporte técnico a usuarios, resolución de incidencias de hardware y software, y mantenimiento de sistemas.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

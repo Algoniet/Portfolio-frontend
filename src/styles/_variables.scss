@@ -1,0 +1,68 @@
+/* src/styles/_variables.scss */
+
+// Colores Base
+$primary-color: #007bff;            // Azul vibrante para elementos principales
+$primary-color-light: lighten($primary-color, 30%); // Versión más clara del color principal para hovers, etc.
+$secondary-color: #28a745;          // Verde para acentos o éxito
+$accent-color: #ffc107;             // Amarillo para advertencias o elementos destacados
+$border-color: #495057;             // Color para bordes y líneas divisorias
+
+// Colores de Texto
+$text-light: #f8f9fa;               // Texto claro para fondos oscuros
+$text-dark: #adb5bd;                // Texto oscuro (gris suave) para detalles o contraste ligero
+                                    // NOTA: Si $background-light es oscuro, este color ($text-dark) funcionaría como "texto claro" sobre un fondo oscuro.
+                                    // Considera cambiar el nombre a `$text-muted` o `$text-on-dark-light` si tu tema es oscuro.
+
+// Colores de Fondo
+$background-darker:#000114;
+//$background-darker: #1a1a1a;        // Un negro muy oscuro para fondos principales
+$background-dark: #21252940;          // Un gris oscuro más estándar
+$background-light: rgba(0, 123, 255, 0.1);         // Un gris oscuro un poco más claro (para tarjetas, etc.)
+                                    // NOTA: Si el tema general es oscuro, este nombre `background-light` puede ser confuso.
+                                    // Considera renombrarlo a `$card-background` o `$surface-background`.
+
+
+// --- Tipografía ---
+$font-family-base: 'Raleway', sans-serif;       // Fuente principal para el cuerpo del texto
+$font-family-headings: 'Montserrat', sans-serif; // Fuente para títulos y encabezados
+$font-family-code: 'Fira Code', monospace;       // Fuente específica para código
+
+$font-size-base: 1rem;       // 16px por defecto (asumiendo 1rem = 16px)
+$font-size-sm: 0.875rem;     // 14px (0.875 * 16px)
+$font-size-xs: 0.75rem;      // 12px (0.75 * 16px) - ¡CORREGIDO EL COMENTARIO Y UNIDAD!
+$font-size-md: 1.125rem;     // 18px (1.125 * 16px) - ¡CORREGIDO EL COMENTARIO!
+$font-size-lg: 1.25rem;      // 20px (1.25 * 16px)
+$font-size-xl: 1.5rem;       // 24px (1.5 * 16px)
+$font-size-xxl: 2rem;        // 32px (2 * 16px)
+$font-size-h1: 3.5rem;       // Tamaño para el título principal (hero)
+$font-size-h2: 2.5rem;       // Tamaño para títulos de sección
+$font-size-h3: 2rem;         // Tamaño para subtítulos importantes
+
+// --- Espaciado (spacing) ---
+$spacing-xxs: 4px;           // Mantener en px si son valores muy pequeños y precisos
+$spacing-xs: 0.5rem;         // 8px
+$spacing-sm: 1rem;           // 16px
+$spacing-md: 1.5rem;         // 24px
+$spacing-lg: 2rem;           // 32px
+$spacing-xl: 3rem;           // 48px
+$spacing-xxl: 4rem;          // 64px
+
+// --- Z-index ---
+$zindex-tooltip: 1050;
+$zindex-modal: 1100;
+$zindex-navbar: 1200;
+
+// --- Border Radius ---
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-pill: 50px;
+
+// --- Transiciones ---
+$transition-speed: 0.3s;
+
+// --- Breakpoints (para Media Queries) ---
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

@@ -1,0 +1,54 @@
+// src/styles/_mixins.scss
+
+// Importa las variables. ¡Esto es crucial para que los mixins puedan usarlas!
+@use 'variables' as var;
+
+// --- Mixin para Contenedores ---
+// Define un ancho máximo centrado para el contenido principal
+@mixin container-styles { // Mantengo tu nombre de mixin original
+  max-width: var.$breakpoint-xl; // Usa la variable de breakpoint
+  margin: 0 auto;
+  padding: 0 var.$spacing-lg; // Usa la variable de espaciado
+  box-sizing: border-box; // Asegura que el padding no añada ancho extra
+
+  // Adapta el padding según el tamaño de la pantalla
+  @include media-breakpoint-down(var.$breakpoint-lg) {
+    padding: 0 var.$spacing-md; // Menos padding en tablets
+  }
+
+  @include media-breakpoint-down(var.$breakpoint-sm) {
+    padding: 0 var.$spacing-md; // Un poco de padding en móviles para que no se pegue a los bordes
+  }
+}
+
+// --- Mixins Flexbox ---
+// Centra contenido horizontal y verticalmente
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Centra contenido verticalmente y distribuye horizontalmente con espacio entre ellos
+@mixin flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// --- Mixin para Media Queries ---
+// Facilita la escritura de media queries responsivas
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  // Ajuste común para evitar solapamiento exacto en bordes de breakpoints
+  @media (max-width: ($breakpoint - 0.02px)) {
+    @content;
+  }
+}
+
+// Puedes añadir más mixins aquí, por ejemplo para botones, sombras, etc.

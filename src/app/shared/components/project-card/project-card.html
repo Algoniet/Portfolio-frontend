@@ -1,0 +1,29 @@
+<div class="project-card">
+  <div class="project-image-container">
+    <img [src]="imageUrl" [alt]="title" onerror="this.onerror=null; this.src='https://placehold.co/600x400/9e0059/ffffff?text=Imagen+No+Disponible';">
+  </div>
+  <div class="project-details">
+    <h3 class="project-title">{{ title }}</h3>
+    <p class="project-description">{{ description }}</p>
+
+    <div class="project-techs">
+      <div class="tech-grid">
+        @for (tech of technologyIcons; track tech.name) {
+          <div class="tech-item">
+            <i class="tech-icon {{ tech.icon }}"></i>
+            <span class="tech-name">{{ tech.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="project-links">
+      <a *ngIf="liveDemoUrl" [href]="liveDemoUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Ver Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+      <a *ngIf="githubUrl" [href]="githubUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+        GitHub <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
