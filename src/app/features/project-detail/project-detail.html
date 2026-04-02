@@ -6,17 +6,45 @@
       Aquí puedes explorar una selección de mis trabajos más recientes y destacados. Cada proyecto refleja mi pasión por crear soluciones web innovadoras y eficientes.
     </p>
 
-    <div class="projects-grid">
-      @for (project of projects; track project.title) {
-        <app-project-card
-          [title]="project.title"
-          [description]="project.description"
-          [imageUrl]="project.imageUrl"
-          [technologyIcons]="project.technologyIcons" 
-          [liveDemoUrl]="project.liveDemoUrl"
-          [githubUrl]="project.githubUrl"
-        ></app-project-card>
-      }
-    </div>
+    <!-- Loading State -->
+    @if (isLoading) {
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Cargando proyectos...</p>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (errorMessage && !isLoading) {
+      <div class="error-message">
+        <p>{{ errorMessage }}</p>
+        <button class="btn btn-secondary" (click)="retryLoad()">
+          Reintentar
+        </button>
+      </div>
+    }
+
+    <!-- Projects Grid -->
+    @if (!isLoading) {
+      <div class="projects-grid">
+        @for (project of projects; track project.title) {
+          <app-project-card
+            [title]="project.title"
+            [description]="project.description"
+            [imageUrl]="project.imageUrl"
+            [technologyIcons]="project.technologyIcons"
+            [liveDemoUrl]="project.liveDemoUrl"
+            [githubUrl]="project.githubUrl"
+          ></app-project-card>
+        }
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!isLoading && projects.length === 0 && !errorMessage) {
+      <div class="empty-state">
+        <p>No hay proyectos disponibles en este momento.</p>
+      </div>
+    }
   </div>
 </section>

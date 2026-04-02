@@ -1,8 +1,6 @@
-/* Aquí iría la ruta real de tu archivo, por ejemplo, src/app/features/proyectos/components/project-card/project-card.component.scss */
-
-@use 'variables' as var;
-@use 'mixins' as mix;
-@use 'layout' as layout;
+@use '../../../../styles/variables' as var;
+@use '../../../../styles/mixins' as mix;
+@use 'sass:color';
 
 .project-card {
   background-color: var.$background-light;
@@ -90,16 +88,21 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease;
     cursor: default;
     white-space: nowrap;
+    min-width: 60px;
 
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      background-color: var.$primary-color-light;
+      background-color: color.adjust(var.$primary-color, $lightness: -5%);
+
       .tech-icon {
-        color: var.$primary-color;
+        color: var.$text-light;
+        transform: scale(1.1);
       }
+
       .tech-name {
         color: var.$text-light;
+        font-weight: 600;
       }
     }
 
@@ -107,6 +110,7 @@
       font-size: 1.8em;
       line-height: 1;
       color: var.$secondary-color;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
 
     .tech-name {
@@ -114,6 +118,7 @@
       font-weight: 500;
       color: var.$text-light;
       text-align: center;
+      transition: font-weight 0.2s ease;
     }
   }
 

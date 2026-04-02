@@ -1,42 +1,51 @@
+@use '../../../../styles/variables' as var;
+@use '../../../../styles/mixins' as mix;
+@use 'sass:color';
+
 .app-footer {
-  background-color: #34495e;
-  color: #ecf0f1;
-  padding: 1.5rem 0;
+  background-color: var.$background-dark;
+  color: var.$text-light;
+  padding: var.$spacing-lg 0;
   text-align: center;
   margin-top: auto;
 
   .container {
-    max-width: 1200px;
+    max-width: var.$breakpoint-xl;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var.$spacing-lg;
   }
 
   p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: var.$font-size-sm;
   }
 
   .social-links {
-    margin-top: 1rem;
+    margin-top: var.$spacing-sm;
 
     a {
-      color: #ecf0f1;
+      color: var.$text-light;
       text-decoration: none;
-      margin: 0 0.8rem;
-      font-size: 1rem;
-      transition: color 0.3s ease;
+      margin: 0 var.$spacing-sm;
+      font-size: var.$font-size-base;
+      transition: color var.$transition-speed ease;
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
-        color: #3498db;
+        color: var.$primary-color;
       }
     }
   }
 
-  @media (max-width: 768px) {
+  @include mix.media-breakpoint-down(var.$breakpoint-md) {
     .social-links {
       a {
-        display: block;
-        margin: 0.5rem 0;
+        display: inline-flex;
+        margin: var.$spacing-xs;
       }
     }
   }
