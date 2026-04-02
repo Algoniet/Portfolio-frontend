@@ -7,7 +7,7 @@ import { fromEvent, Subscription, throttleTime } from 'rxjs';
   selector: 'app-navbar',
   imports: [RouterLink,RouterLinkActive,CommonModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss'
+  styleUrl: './navbar.css'
 })
 export class Navbar implements OnInit,OnDestroy {
  isMenuHiddenByScroll: boolean = false;

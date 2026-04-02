@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink], 
   templateUrl: './home.html', 
-  styleUrl: './home.scss',   
+  styleUrl: './home.css',   
   animations: [ 
     trigger('typewriterEffect', [
       state('void', style({ width: '0%', opacity: 0 })),

@@ -1,0 +1,47 @@
+.app-footer {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.app-footer .container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.app-footer .social-links {
+  margin-top: var(--spacing-sm);
+}
+
+.app-footer .social-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  margin: 0 var(--spacing-sm);
+  font-size: var(--font-size-base);
+  transition: color var(--transition-speed) ease;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-footer .social-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Media Query para tablets y móviles */
+@media (max-width: 991.98px) {
+  .app-footer .social-links a {
+    display: inline-flex;
+    margin: var(--spacing-xs);
+  }
+}

@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-about',
   imports: [CommonModule],
   templateUrl: './about.html',
-  styleUrl: './about.scss'
+  styleUrl: './about.css'
 })
 export class About {
   frontendTechnologies = [

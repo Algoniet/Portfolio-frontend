@@ -1,7 +1,7 @@
 <div class="project-card">
-  <div class="project-image-container">
+<!--   <div class="project-image-container">
     <img [src]="imageUrl" [alt]="title" onerror="this.onerror=null; this.src='https://placehold.co/600x400/9e0059/ffffff?text=Imagen+No+Disponible';">
-  </div>
+  </div> -->
   <div class="project-details">
     <h3 class="project-title">{{ title }}</h3>
     <p class="project-description">{{ description }}</p>
@@ -10,7 +10,11 @@
       <div class="tech-grid">
         @for (tech of technologyIcons; track tech.name) {
           <div class="tech-item">
-            <i class="tech-icon {{ tech.icon }}"></i>
+            @if (tech.icon.startsWith('devicon')) {
+              <i class="tech-icon devicon {{ tech.icon }}"></i>
+            } @else {
+              <i class="tech-icon {{ tech.icon }}"></i>
+            }
             <span class="tech-name">{{ tech.name }}</span>
           </div>
         }

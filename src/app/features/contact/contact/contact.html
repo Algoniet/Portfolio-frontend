@@ -1,3 +1,5 @@
+<!-- src/app/pages/contact/contact.component.html -->
+
 <section class="contact-section">
   <div class="container">
     <h2 class="section-title">Contáctame</h2>
@@ -5,23 +7,31 @@
       ¿Tienes un proyecto en mente, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!
     </p>
 
-    <form class="contact-form">
+    <!-- Añadir (ngSubmit) y [formGroup] o [(ngModel)] a los inputs -->
+    <form class="contact-form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required placeholder="Tu Nombre">
+        <input type="text" id="name" name="name" [(ngModel)]="contactForm.name" required placeholder="Tu Nombre">
       </div>
 
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required placeholder="alvarogn1297@ejemplo.com">
+        <input type="email" id="email" name="email" [(ngModel)]="contactForm.email" required placeholder="alvarogn1297@ejemplo.com">
       </div>
 
       <div class="form-group">
         <label for="message">Mensaje:</label>
-        <textarea id="message" name="message" rows="6" required placeholder="Escribe aquí tu mensaje..."></textarea>
+        <textarea id="message" name="message" rows="6" [(ngModel)]="contactForm.message" required placeholder="Escribe aquí tu mensaje..."></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+      </button>
+
+      <!-- Mensaje de éxito/error -->
+      @if (submitMessage) {
+        <p [class.success-message]="isSuccess" [class.error-message]="!isSuccess">{{ submitMessage }}</p>
+      }
     </form>
 
     <div class="social-links">
