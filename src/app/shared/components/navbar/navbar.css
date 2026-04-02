@@ -1,0 +1,174 @@
+.app-header {
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  position: relative;
+}
+
+.app-header .navbar-floating {
+  pointer-events: auto;
+  position: fixed;
+  bottom: var(--spacing-xl);
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  z-index: var(--zindex-navbar);
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.app-header .navbar-floating.hidden {
+  transform: translateX(-50%) scale(0.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-header .navbar-floating .nav-button {
+  position: relative;
+  font-size: var(--font-size-md);
+  color: var(--text-dark);
+  background-color: var(--background-dark);
+  text-decoration: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-speed) ease, color var(--transition-speed) ease;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.app-header .navbar-floating .nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: var(--spacing-xxs);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  border-radius: 2px;
+}
+
+.app-header .navbar-floating .nav-button:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  transform: translateY(-8px) scale(1.6);
+}
+
+.app-header .navbar-floating .nav-button:hover::after {
+  width: 100%;
+}
+
+.app-header .navbar-floating .nav-button.active {
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.app-header .navbar-floating .nav-button.active::after {
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+
+.toggle-button {
+  pointer-events: none;
+  position: fixed;
+  bottom: var(--spacing-xxs);
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: var(--primary-color);
+  color: var(--background-darker);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s ease-in, opacity 0.1s ease-in, background-color var(--transition-speed) ease;
+  z-index: 1201;
+}
+
+.toggle-button.visible {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, background-color var(--transition-speed) ease;
+}
+
+.toggle-button:hover {
+  background-color: #3395ff;
+  transform: translateX(-50%) translateY(-3px) scale(1);
+}
+
+/* Media Query para tablets y móviles (max-width: 991.98px) */
+@media (max-width: 991.98px) {
+  .app-header .navbar-floating {
+    bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .app-header .navbar-floating.hidden {
+    transform: translateX(-50%) scale(0.1);
+  }
+
+  .toggle-button {
+    bottom: var(--spacing-xxs);
+    color: var(--background-darker);
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+  }
+
+  .toggle-button.visible {
+    transform: translateX(-50%) scale(1);
+  }
+
+  .toggle-button:hover {
+    transform: translateX(-50%) translateY(-3px) scale(1);
+  }
+}
+
+/* Media Query para móviles pequeños (max-width: 575.98px) */
+@media (max-width: 575.98px) {
+  .app-header .navbar-floating {
+    width: calc(100% - var(--spacing-xl));
+    left: var(--spacing-md);
+    transform: translateX(0) scale(1);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs);
+    bottom: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    gap: var(--spacing-sm);
+  }
+
+  .app-header .navbar-floating.hidden {
+    transform: translateY(calc(100% + var(--spacing-md))) scale(0.1);
+  }
+
+  .toggle-button {
+    bottom: var(--spacing-xxs);
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: var(--font-size-md);
+    transform: translateX(-50%) scale(0);
+  }
+
+  .toggle-button.visible {
+    transform: translateX(-50%) scale(1);
+  }
+
+  .toggle-button:hover {
+    transform: translateX(-50%) translateY(-3px) scale(1);
+  }
+}

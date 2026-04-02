@@ -20,6 +20,7 @@ export class GithubService {
   public error$ = this.errorSubject.asObservable();
 
   // Mapping of technologies to their devicon classes
+  // Icons from https://devicon.dev/ - v2.x
   private technologyIconMap: { [key: string]: string } = {
     // Frontend Frameworks
     'Angular': 'devicon-angularjs-plain colored',
@@ -31,15 +32,15 @@ export class GithubService {
     'Nuxt.js': 'devicon-nuxtjs-plain colored',
 
     // Backend Frameworks
-    'Spring Boot': 'devicon-spring-plain colored',
-    'Spring': 'devicon-spring-plain colored',
+    'Spring Boot': 'devicon-spring-original colored',
+    'Spring': 'devicon-spring-original colored',
     'Express': 'devicon-express-original',
     'Express.js': 'devicon-express-original',
     'Node.js': 'devicon-nodejs-plain colored',
     'Django': 'devicon-django-plain',
     'Flask': 'devicon-flask-original',
     'FastAPI': 'devicon-fastapi-plain',
-    'NestJS': 'devicon-nestjs-plain',
+    'NestJS': 'devicon-nestjs-plain colored',
 
     // Languages
     'TypeScript': 'devicon-typescript-plain colored',
@@ -48,8 +49,8 @@ export class GithubService {
     'Java': 'devicon-java-plain colored',
     'C#': 'devicon-csharp-plain colored',
     'C++': 'devicon-cplusplus-plain colored',
-    'C': 'devicon-c-plain',
-    'Go': 'devicon-go-plain colored',
+    'C': 'devicon-c-plain colored',
+    'Go': 'devicon-go-original-wordmark colored',
     'Rust': 'devicon-rust-plain',
     'PHP': 'devicon-php-plain colored',
     'Ruby': 'devicon-ruby-plain colored',
@@ -64,8 +65,9 @@ export class GithubService {
     'CSS3': 'devicon-css3-plain colored',
     'SCSS': 'devicon-sass-original colored',
     'Sass': 'devicon-sass-original colored',
-    'Tailwind': 'devicon-tailwindcss-plain colored',
-    'Tailwindcss': 'devicon-tailwindcss-plain colored',
+    'Tailwind': 'devicon-tailwindcss-original colored',
+    'Tailwindcss': 'devicon-tailwindcss-original colored',
+    'TailwindCSS': 'devicon-tailwindcss-original colored',
     'Bootstrap': 'devicon-bootstrap-plain colored',
 
     // Databases
@@ -82,18 +84,18 @@ export class GithubService {
     // DevOps & Cloud
     'Docker': 'devicon-docker-plain colored',
     'Kubernetes': 'devicon-kubernetes-plain colored',
-    'AWS': 'devicon-amazonwebservices-plain-wordmark colored',
+    'AWS': 'devicon-amazonwebservices-original-wordmark colored',
     'Azure': 'devicon-azure-plain colored',
     'Google Cloud': 'devicon-googlecloud-plain colored',
     'GCP': 'devicon-googlecloud-plain colored',
-    'Vercel': 'devicon-vercel-plain colored',
+    'Vercel': 'devicon-vercel-original colored',
     'Netlify': 'devicon-netlify-plain colored',
     'GitHub Actions': 'devicon-githubactions-plain colored',
     'Git': 'devicon-git-plain colored',
 
     // Tools
     'Webpack': 'devicon-webpack-plain colored',
-    'Vite': 'devicon-vite-plain colored',
+    'Vite': 'devicon-vitejs-plain colored',
     'Jest': 'devicon-jest-plain colored',
     'Vitest': 'devicon-vitest-plain colored',
     'Storybook': 'devicon-storybook-plain colored',
@@ -103,6 +105,7 @@ export class GithubService {
     'Android': 'devicon-android-plain colored',
     'Flutter': 'devicon-flutter-plain colored',
     'React Native': 'devicon-react-original colored',
+    'Dart': 'devicon-dart-plain colored',
 
     // Others
     'GraphQL': 'devicon-graphql-plain colored',
@@ -112,29 +115,44 @@ export class GithubService {
     'Bash': 'devicon-bash-plain',
     'Jupyter': 'devicon-jupyter-plain colored',
     'Jupyter Notebook': 'devicon-jupyter-plain colored',
-    'Markdown': 'devicon-markdown-plain',
+    'Markdown': 'devicon-markdown-original',
+    'JSON': 'devicon-json-plain',
+    'YAML': 'devicon-yaml-plain',
+    'TOML': 'fa-solid fa-file-code',
   };
 
   // Keywords to detect technologies from repo names and descriptions
   private techKeywords: { [key: string]: string[] } = {
-    'Angular': ['angular', 'ng-', 'ngx-'],
-    'React': ['react', 'reactjs', 'nextjs', 'next.js'],
-    'Vue': ['vue', 'vuejs', 'nuxt', 'nuxtjs'],
-    'TypeScript': ['typescript', 'ts-'],
+    'Angular': ['angular', 'ng-', 'ngx-', 'angularjs'],
+    'React': ['react', 'reactjs', 'nextjs', 'next.js', 'react-native'],
+    'Vue': ['vue', 'vuejs', 'nuxt', 'nuxtjs', 'nuxt.js'],
+    'TypeScript': ['typescript', 'ts-', '.ts'],
     'Spring Boot': ['spring-boot', 'springboot', 'spring-boot-starter'],
-    'Spring': ['spring'],
-    'Node.js': ['node', 'nodejs', 'express', 'nestjs', 'nest.js'],
-    'Docker': ['docker', 'container'],
-    'MongoDB': ['mongodb', 'mongo'],
-    'PostgreSQL': ['postgresql', 'postgres', 'pg-'],
+    'Spring': ['spring-framework', 'springframework'],
+    'Node.js': ['node', 'nodejs', 'express', 'expressjs', 'nestjs', 'nest.js', 'fastify'],
+    'Django': ['django', 'django-rest'],
+    'Flask': ['flask'],
+    'FastAPI': ['fastapi'],
+    'Docker': ['docker', 'dockerfile', 'container'],
+    'Kubernetes': ['kubernetes', 'k8s'],
+    'MongoDB': ['mongodb', 'mongo', 'mongoose'],
+    'PostgreSQL': ['postgresql', 'postgres', 'pg-', 'psql'],
+    'MySQL': ['mysql', 'mariadb'],
+    'Redis': ['redis'],
     'Firebase': ['firebase'],
-    'Tailwind': ['tailwind', 'tailwindcss'],
+    'Supabase': ['supabase'],
+    'Tailwind': ['tailwind', 'tailwindcss', 'tailwind-css'],
+    'Bootstrap': ['bootstrap'],
     'GraphQL': ['graphql', 'gql', 'apollo'],
-    'Python': ['python', 'django', 'flask', 'fastapi'],
-    'Java': ['java', 'maven', 'gradle'],
-    'Kotlin': ['kotlin', 'kt-'],
-    'Rust': ['rust', 'cargo'],
-    'Go': ['golang', 'go-'],
+    'Python': ['python', 'python3', 'py-', '.py'],
+    'Java': ['java', 'maven', 'gradle', 'spring'],
+    'Kotlin': ['kotlin', 'kt-', 'android-kotlin'],
+    'Rust': ['rust', 'cargo', 'rust-lang'],
+    'Go': ['golang', 'go-', 'gin-'],
+    'PHP': ['php', 'laravel', 'symfony'],
+    'Ruby': ['ruby', 'rails', 'ruby-on-rails'],
+    'Vite': ['vite'],
+    'Webpack': ['webpack'],
   };
 
   // Fallback projects when GitHub API fails
@@ -145,7 +163,14 @@ export class GithubService {
       imageUrl: 'assets/images/portfolio2.png',
       technologies: ['Angular', 'TypeScript', 'HTML5', 'SCSS', 'Git'],
       liveDemoUrl: 'https://algoniet.github.io/portfolio',
-      githubUrl: 'https://github.com/Algoniet/portfolio'
+      githubUrl: 'https://github.com/Algoniet/portfolio',
+      technologyIcons: [
+        { name: 'Angular', icon: 'devicon-angularjs-plain colored' },
+        { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
+        { name: 'HTML5', icon: 'devicon-html5-plain colored' },
+        { name: 'SCSS', icon: 'devicon-sass-original colored' },
+        { name: 'Git', icon: 'devicon-git-plain colored' }
+      ]
     }
   ];
 
@@ -236,13 +261,13 @@ export class GithubService {
 
   /**
    * Extracts technologies from repo language, topics, name and description
+   * Priority: 1) Language (primary), 2) Topics, 3) Detected from name/description
    */
   private extractTechnologies(repo: GitHubRepo): string[] {
     const technologies: Set<string> = new Set();
 
-    // 1. Add main language
+    // 1. Add main language first (highest priority)
     if (repo.language) {
-      // Map GitHub language names to our standard names
       const langMap: { [key: string]: string } = {
         'Jupyter Notebook': 'Jupyter',
         'Shell': 'Shell',
@@ -251,58 +276,134 @@ export class GithubService {
       technologies.add(normalizedLang);
     }
 
-    // 2. Add technologies from topics
-    repo.topics?.forEach(topic => {
-      const normalized = this.normalizeTechName(topic);
-      if (this.technologyIconMap[normalized]) {
-        technologies.add(normalized);
-      }
-    });
+    // 2. Add technologies from topics (GitHub topics are usually very accurate)
+    if (repo.topics && repo.topics.length > 0) {
+      repo.topics.forEach(topic => {
+        const normalized = this.normalizeTechName(topic);
+        // Solo agregar si tenemos un icono mapeado para esta tecnología
+        if (this.technologyIconMap[normalized]) {
+          technologies.add(normalized);
+        }
+      });
+    }
 
-    // 3. Detect technologies from repo name and description
+    // 3. Detect additional technologies from repo name and description
     const searchText = `${repo.name} ${repo.description || ''}`.toLowerCase();
 
     for (const [tech, keywords] of Object.entries(this.techKeywords)) {
-      for (const keyword of keywords) {
-        if (searchText.includes(keyword)) {
-          technologies.add(tech);
-          break;
+      // Solo agregar si aún no está en la lista y tenemos icono
+      if (!technologies.has(tech) && this.technologyIconMap[tech]) {
+        for (const keyword of keywords) {
+          if (searchText.includes(keyword)) {
+            technologies.add(tech);
+            break;
+          }
         }
       }
     }
 
     // 4. Special mappings for common patterns
-    if (searchText.includes('api') && !technologies.has('REST API')) {
-      // Only add REST API if no GraphQL
-      if (!technologies.has('GraphQL')) {
-        technologies.add('REST API');
-      }
+    if (searchText.includes('api') && !technologies.has('REST API') && !technologies.has('GraphQL')) {
+      technologies.add('REST API');
     }
 
-    // Convert to array and limit to reasonable number (max 6)
-    return Array.from(technologies).slice(0, 6);
+    // Convert to array - limit to 8 to show more technologies including topics
+    return Array.from(technologies).slice(0, 8);
   }
 
   /**
    * Normalizes technology name for icon lookup
+   * Handles GitHub topics which are usually lowercase with hyphens
    */
   private normalizeTechName(name: string): string {
-    const normalized = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    if (!name) return '';
 
-    // Handle special cases
-    const specialMappings: { [key: string]: string } = {
-      'Nodejs': 'Node.js',
-      'Typescript': 'TypeScript',
-      'Javascript': 'JavaScript',
-      'Postgres': 'PostgreSQL',
-      'Mongodb': 'MongoDB',
-      'Tailwindcss': 'Tailwind',
-      'Springboot': 'Spring Boot',
-      'Nextjs': 'Next.js',
-      'Nuxtjs': 'Nuxt.js',
+    const lower = name.toLowerCase();
+
+    // Direct lowercase mappings for common GitHub topics
+    const lowercaseMappings: { [key: string]: string } = {
+      'nodejs': 'Node.js',
+      'node': 'Node.js',
+      'typescript': 'TypeScript',
+      'ts': 'TypeScript',
+      'javascript': 'JavaScript',
+      'js': 'JavaScript',
+      'postgresql': 'PostgreSQL',
+      'postgres': 'PostgreSQL',
+      'mongodb': 'MongoDB',
+      'mongo': 'MongoDB',
+      'tailwindcss': 'Tailwind',
+      'tailwind-css': 'Tailwind',
+      'springboot': 'Spring Boot',
+      'spring-boot': 'Spring Boot',
+      'nextjs': 'Next.js',
+      'next.js': 'Next.js',
+      'nuxtjs': 'Nuxt.js',
+      'nuxt.js': 'Nuxt.js',
+      'vuejs': 'Vue',
+      'vue.js': 'Vue',
+      'reactjs': 'React',
+      'react-native': 'React Native',
+      'expressjs': 'Express',
+      'nestjs': 'NestJS',
+      'html5': 'HTML5',
+      'css3': 'CSS3',
+      'sass': 'Sass',
+      'scss': 'SCSS',
+      'aws': 'AWS',
+      'gcp': 'GCP',
+      'googlecloud': 'Google Cloud',
+      'google-cloud': 'Google Cloud',
+      'github-actions': 'GitHub Actions',
+      'restapi': 'REST API',
+      'rest-api': 'REST API',
+      'graphql': 'GraphQL',
+      'dockerfile': 'Docker',
+      'shell': 'Shell',
+      'bash': 'Bash',
+      'jupyter-notebook': 'Jupyter',
+      'fastapi': 'FastAPI',
+      'vite': 'Vite',
+      'kotlin': 'Kotlin',
+      'flutter': 'Flutter',
+      'android': 'Android',
+      'ios': 'iOS',
+      'swift': 'Swift',
+      'dart': 'Dart',
+      'go': 'Go',
+      'golang': 'Go',
+      'rust': 'Rust',
+      'php': 'PHP',
+      'laravel': 'Laravel',
+      'symfony': 'Symfony',
+      'ruby': 'Ruby',
+      'rails': 'Ruby',
+      'django': 'Django',
+      'flask': 'Flask',
+      'redis': 'Redis',
+      'firebase': 'Firebase',
+      'supabase': 'Supabase',
+      'git': 'Git',
+      'github': 'GitHub Actions',
+      'gitlab': 'Git',
+      'vercel': 'Vercel',
+      'netlify': 'Netlify',
+      'heroku': 'Heroku',
+      'kubernetes': 'Kubernetes',
+      'k8s': 'Kubernetes',
+      'terraform': 'Terraform',
+      'ansible': 'Ansible',
+      'jenkins': 'Jenkins',
+      'travis': 'CI/CD',
+      'circleci': 'CI/CD',
     };
 
-    return specialMappings[normalized] || normalized;
+    if (lowercaseMappings[lower]) {
+      return lowercaseMappings[lower];
+    }
+
+    // Default normalization: capitalize first letter
+    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   }
 
   /**

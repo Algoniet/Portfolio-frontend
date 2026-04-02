@@ -1,0 +1,281 @@
+/* ==========================================================================
+   Global Styles - CSS Variables & Base Styles
+   ========================================================================== */
+
+/* Import FontAwesome */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties (Variables Globales)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colores Base */
+  --primary-color: #007bff;
+  --primary-color-light: #66b3ff;
+  --secondary-color: #28a745;
+  --accent-color: #ffc107;
+  --border-color: #495057;
+
+  /* Colores de Texto */
+  --text-light: #f8f9fa;
+  --text-dark: #adb5bd;
+
+  /* Colores de Fondo */
+  --background-darker: #000114;
+  --background-dark: #21252940;
+  --background-light: rgba(0, 123, 255, 0.1);
+
+  /* Tipografía */
+  --font-family-base: 'Raleway', sans-serif;
+  --font-family-headings: 'Montserrat', sans-serif;
+  --font-family-code: 'Fira Code', monospace;
+
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  --font-size-h1: 3.5rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 2rem;
+
+  /* Espaciado */
+  --spacing-xxs: 4px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+
+  /* Z-index */
+  --zindex-tooltip: 1050;
+  --zindex-modal: 1100;
+  --zindex-navbar: 1200;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-pill: 50px;
+
+  /* Transiciones */
+  --transition-speed: 0.3s;
+
+  /* Breakpoints (para referencia en JS si es necesario) */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+/* --------------------------------------------------------------------------
+   Reset y Base
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family-base);
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-light);
+  background-color: var(--background-darker);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Configuración de la raíz de la aplicación Angular */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Tipografía
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-headings);
+  color: var(--text-light);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-md); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+ul, ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+@media (max-width: 991.98px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: var(--spacing-xl) 0;
+  padding-bottom: calc(var(--spacing-xl) * 2);
+  background-color: var(--background-dark);
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-top-lg {
+  margin-top: var(--spacing-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Enlaces
+   -------------------------------------------------------------------------- */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* --------------------------------------------------------------------------
+   Botones - Clases concretas
+   -------------------------------------------------------------------------- */
+.btn {
+  padding: 0.8rem 2rem;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+/* --------------------------------------------------------------------------
+   View Transitions
+   -------------------------------------------------------------------------- */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.5s;
+}
+
+/* --------------------------------------------------------------------------
+   Utilidades Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  h1 { font-size: calc(var(--font-size-h1) * 0.7); }
+  h2 { font-size: calc(var(--font-size-h2) * 0.8); }
+  h3 { font-size: calc(var(--font-size-h3) * 0.85); }
+}

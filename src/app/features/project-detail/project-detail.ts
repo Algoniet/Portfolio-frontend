@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectCard } from "../../shared/components/project-card/project-card";
-import { GithubService } from '../../core/services/github/github.service';
 import { Project } from '../../core/models/project.model';
+import { GithubService } from 'src/app/core/services/github/github.service';
 
 @Component({
   selector: 'app-project-detail',
   imports: [ProjectCard, CommonModule],
   templateUrl: './project-detail.html',
-  styleUrl: './project-detail.scss'
+  styleUrl: './project-detail.css'
 })
 export class ProjectDetail implements OnInit {
   projects: Project[] = [];

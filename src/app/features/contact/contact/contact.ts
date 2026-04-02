@@ -7,7 +7,7 @@ import { ContactForm, ContactService } from '../contact.service';
   selector: 'app-contact',
   imports: [FormsModule,CommonModule],
   templateUrl: './contact.html',
-  styleUrl: './contact.scss'
+  styleUrl: './contact.css'
 })
 export class Contact {
 
