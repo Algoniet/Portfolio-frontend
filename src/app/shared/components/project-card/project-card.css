@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-  height: 100%;
+  height: 400px; /* Fixed height for all cards */
 }
 
 .project-card:hover {
@@ -41,6 +41,8 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
 }
 
 .project-card .project-title {
@@ -54,22 +56,45 @@
   font-size: var(--font-size-base);
   color: var(--text-dark);
   line-height: 1.5;
-  margin-bottom: var(--spacing-lg);
-  flex-grow: 1;
+  margin-bottom: var(--spacing-md);
+  /* Limit to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 4.5em;
+  max-height: 4.5em;
 }
 
 .project-card .project-techs {
-  margin-top: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  margin-top: auto;
+  margin-bottom: var(--spacing-md);
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--text-dark);
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling for tech section */
+.project-card .project-techs::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-card .project-techs::-webkit-scrollbar-track {
+  background: var(--background-dark);
+  border-radius: 2px;
+}
+
+.project-card .project-techs::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
 .project-card .tech-grid {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+  gap: 6px;
 }
 
 .project-card .tech-item {
@@ -77,53 +102,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-xxs);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  gap: 2px;
+  padding: 4px;
   border-radius: var(--border-radius-sm);
   background-color: var(--background-dark);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   cursor: default;
-  white-space: nowrap;
-  min-width: 60px;
+  min-width: 50px;
+  height: 50px;
 }
 
 .project-card .tech-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  background-color: #0069d9;
-}
-
-.project-card .tech-item:hover .tech-icon {
-  color: var(--text-light);
-  transform: scale(1.1);
-}
-
-.project-card .tech-item:hover .tech-name {
-  color: var(--text-light);
-  font-weight: 600;
 }
 
 .project-card .tech-item .tech-icon {
-  font-size: 1.8em;
+  font-size: 1.4em;
   line-height: 1;
-  color: var(--secondary-color);
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .project-card .tech-item .tech-name {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   font-weight: 500;
   color: var(--text-light);
   text-align: center;
   transition: font-weight 0.2s ease;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-card .project-links {
-  margin-top: var(--spacing-md);
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
   display: flex;
   gap: var(--spacing-md);
   justify-content: flex-start;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-card .project-links .btn:hover i {
@@ -132,6 +151,10 @@
 
 /* Media Query para tablets y móviles */
 @media (max-width: 991.98px) {
+  .project-card {
+    height: 380px;
+  }
+
   .project-card .project-links {
     justify-content: center;
   }
@@ -146,9 +169,34 @@
 
   .project-card .project-description {
     font-size: var(--font-size-sm);
+    -webkit-line-clamp: 2;
+    min-height: 3em;
+    max-height: 3em;
   }
 
   .project-card .project-details {
     padding: var(--spacing-md);
+  }
+
+  .project-card .project-techs {
+    max-height: 110px;
+  }
+
+  .project-card .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 4px;
+  }
+
+  .project-card .tech-item {
+    height: 45px;
+    padding: 3px;
+  }
+
+  .project-card .tech-item .tech-icon {
+    font-size: 1.2em;
+  }
+
+  .project-card .tech-item .tech-name {
+    font-size: 8px;
   }
 }

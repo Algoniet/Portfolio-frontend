@@ -1,108 +1,178 @@
 <section class="about-section">
-  <div class="about-main-content">
+  <div class="about-container">
 
-    <div class="intro-and-tech-section">
-      <div class="image-and-intro-text-row">
-        <div class="hero-image-container">
-          <img src="assets/images/about-me-profile.jpg" alt="Tu Foto de Perfil" class="profile-pic" style="view-transition-name: profile;">
+    <!-- Hero Section - Presentación principal destacada -->
+    <header class="about-hero">
+      <div class="hero-image-wrapper">
+        <img src="assets/images/about-me-profile.png" alt="Álvaro González" class="profile-pic-large" style="view-transition-name: profile;">
+        <div class="image-glow"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="about-title">Álvaro González</h1>
+        <p class="about-subtitle">Desarrollador Full-stack</p>
+        <div class="hero-description">
+          <p class="lead-text">
+            Transformo <span class="highlight">código legacy</span> en arquitecturas modernas. Especializado en el ecosistema <strong>Angular + Spring Boot</strong> con experiencia real migrando aplicaciones empresariales desde JSF.
+          </p>
+          <p class="body-text">
+            Desde 2022 he trabajado en empresas como <strong>PENTEC</strong>, <strong>Minsait</strong> y <strong>VIEWNEXT</strong>, desarrollando aplicaciones fullstack que conectan frontend dinámicos con APIs robustas. Me apasiona el desarrollo limpio, el trabajo en equipo y encontrar soluciones elegantes a problemas complejos.
+          </p>
+          <p class="body-text">
+            Actualmente en <strong>Valencia</strong>, combinando trabajo híbrido con aprendizaje continuo. Siempre explorando nuevas tecnologías que aporten valor real a los proyectos.
+          </p>
         </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">2+</span>
+            <span class="stat-label">Años exp.</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Empresas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Tecnologías</span>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <p class="intro-text">
-          Soy un apasionado **Desarrollador Full-stack Junior** con experiencia en la creación de soluciones web robustas y escalables. Mi viaje en la programación me ha permitido sumergirme en tecnologías frontend como **Angular** y **React**, y backend con **Node.js** y **Spring Boot**. Me encanta transformar ideas en código funcional y eficiente, siempre buscando aprender y mejorar mis habilidades para construir productos que generen un impacto positivo.
-        </p>
+    <!-- Tech Carousels Section - 3 Columns -->
+    <div class="tech-carousels-container">
+
+      <!-- Frontend Carousel Column -->
+      <div class="carousel-column">
+        <span class="carousel-label">Frontend</span>
+        <div class="carousel-wrapper">
+          <div class="tech-track frontend-track">
+            @for (tech of frontendTechnologies; track tech.name) {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
+            @for (tech of frontendTechnologies; track tech.name + '-dup') {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
+          </div>
+        </div>
       </div>
 
-      <div class="tech-stack-wrapper">
-        <div class="tech-category-group">
-          <h3 class="titulo"><i class="fas fa-code"></i> Frontend</h3> 
-          <div class="tech-category">
-            <div class="tech-grid">
-              @for (tech of frontendTechnologies; track $index) {
-                <div class="tech-item">
-                  <i class="tech-icon {{ tech.icon }}"></i>
-                  <span class="tech-name">{{ tech.name }}</span>
-                </div>
-              }
-            </div>
+      <!-- Backend Carousel Column -->
+      <div class="carousel-column">
+        <span class="carousel-label">Backend</span>
+        <div class="carousel-wrapper">
+          <div class="tech-track backend-track">
+            @for (tech of backendTechnologies; track tech.name) {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
+            @for (tech of backendTechnologies; track tech.name + '-dup') {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
           </div>
         </div>
-        <div class="tech-category-group">
-          <h3 class="titulo"><i class="fas fa-server"></i> Backend & Bases de Datos</h3>
-          <div class="tech-category">
-            <div class="tech-grid">
-              @for (tech of backendTechnologies; track $index) {
-                <div class="tech-item">
-                  <i class="tech-icon {{ tech.icon }}"></i>
-                  <span class="tech-name">{{ tech.name }}</span>
-                </div>
-              }
+      </div>
+
+      <!-- Tools Carousel Column -->
+      <div class="carousel-column">
+        <span class="carousel-label">Tools</span>
+        <div class="carousel-wrapper">
+          <div class="tech-track tools-track">
+            @for (tech of toolsTechnologies; track tech.name) {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
+            @for (tech of toolsTechnologies; track tech.name + '-dup') {
+              <div class="tech-pill"><i class="tech-icon {{ tech.icon }}"></i><span class="tech-name">{{ tech.name }}</span></div>
+            }
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Content: Education & Experience with internal scroll -->
+    <div class="content-grid">
+
+      <!-- Formación con scroll interno -->
+      <div class="content-card">
+        <div class="card-header">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <h2>Formación</h2>
+        </div>
+        <div class="card-body scrollable">
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Grado Superior en Desarrollo de Aplicaciones Multiplataforma</h3>
+              <span class="institution">PROGRESA Centro de Formación Profesional</span>
+              <span class="date">2020 - 2022</span>
+              <p>Formación en desarrollo multiplataforma con Java, Angular, TypeScript, SQL, HTML, CSS, Android Studio y Swift.</p>
             </div>
           </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Técnico Superior en Mantenimiento Electrónico</h3>
+              <span class="institution">Juan Comenius</span>
+              <span class="date">2016 - 2018</span>
+              <p>Grado superior técnico especializado en mantenimiento de sistemas electrónicos.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Experiencia con scroll interno -->
+      <div class="content-card">
+        <div class="card-header">
+          <i class="fa-solid fa-briefcase"></i>
+          <h2>Experiencia Laboral</h2>
+        </div>
+        <div class="card-body scrollable">
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Desarrollador Web Fullstack</h3>
+              <span class="company">PENTEC</span>
+              <span class="date">Mar 2024 - Actualidad · Valencia (Híbrido)</span>
+              <p>Desarrollo fullstack con Angular y Spring Boot. Migración de JSF a arquitectura moderna. Implementación de APIs REST y componentes dinámicos. Tecnologías: Java, Spring, Angular, TypeScript, Maven, SVN.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Desarrollador AEM/JavaScript</h3>
+              <span class="company">Minsait</span>
+              <span class="date">Sept 2023 - Feb 2024 · 6 meses (Remoto)</span>
+              <p>Desarrollo de formularios interactivos en Adobe Experience Manager (AEM). Optimización UX y automatización de flujos. Trabajo en entornos Agile. Tecnologías: AEM, JavaScript, HTML5, CSS3, Git.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Desarrollador Web</h3>
+              <span class="company">VIEWNEXT</span>
+              <span class="date">Dic 2022 - Sept 2023 · 10 meses · Valencia</span>
+              <p>Desarrollo de aplicaciones web con Java, Spring Boot y JavaScript. Pruebas unitarias (JUnit), control de versiones con Git. Formación en microservicios. Tecnologías: Java, Spring Boot, JUnit, Git, SQL, Maven.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Desarrollador C# (Prácticas)</h3>
+              <span class="company">Ceteck</span>
+              <span class="date">Mar 2022 - May 2022 · 3 meses · Valencia</span>
+              <p>Desarrollo de soluciones en C# integradas con PI System. Análisis de datos industriales y visualización en tiempo real. Trabajo en entorno ágil. Tecnologías: C#, PI System, SQL, Git.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
-    <div class="columns-wrapper">
-      <div class="column-group education-group">
-        <h3 class="titulo"><i class="fa-solid fa-graduation-cap"></i> Formación</h3>
-        <div class="column education-column">
-          <ul class="timeline">
-            <li>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>Grado Superior en Desarrollo de Aplicaciones Multiplataforma</h4>
-                <p class="institution">Progresa</p>
-                <p class="date">Septiembre 2020 - Junio 2022</p>
-                <p class="description">
-                  Enfocado en el desarrollo Multiplataforma con tecnologías como Java, Angular, TypeScript, SQL, HTML y CSS ,Android Studio y Swift. Realización de proyectos integrales y prácticas en empresa.
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>Curso de Desarrollo Web Full Stack</h4>
-                <p class="institution">Open Bootcamp</p>
-                <p class="date">Enero 2022 - Junio 2022</p>
-                <p class="description">
-                  Aprendizaje intensivo en JavaScript, Node.js, Express.js, React, MongoDB y Git. Desarrollo de aplicaciones web completas.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="column-group experience-group">
-        <h3 class="titulo"><i class="fa-solid fa-briefcase"></i> Experiencia Laboral</h3> 
-        <div class="column experience-column">
-          <ul class="timeline">
-            <li>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>Desarrollador Full-stack Junior</h4>
-                <p class="company">Pentec</p>
-                <p class="date">Febrero 2024 - Actual</p>
-                <p class="description">
-                  Desarrollo y mantenimiento de interfaces de usuario para aplicaciones web escalables utilizando Angular y TypeScript junto a Java Spring en el Back. Colaboración en equipos ágiles, implementación de nuevas funcionalidades y optimización de rendimiento.
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>Asistente Técnico IT</h4>
-                <p class="company">TechSolutions S.L.</p>
-                <p class="date">Julio 2021 - Diciembre 2021</p>
-                <p class="description">
-                  Soporte técnico a usuarios, resolución de incidencias de hardware y software, y mantenimiento de sistemas.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 </section>

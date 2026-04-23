@@ -132,7 +132,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   border: 5px solid var(--primary-color);
   box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
   transition: transform var(--transition-speed) ease;

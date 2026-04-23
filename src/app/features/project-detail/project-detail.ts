@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectCard } from "../../shared/components/project-card/project-card";
 import { Project } from '../../core/models/project.model';
@@ -15,10 +15,55 @@ export class ProjectDetail implements OnInit {
   isLoading = true;
   errorMessage: string | null = null;
 
+  // Carousel properties
+  currentIndex = 0;
+  visibleCards = 3;
+
   constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
     this.loadProjects();
+    this.updateVisibleCards();
+  }
+
+  get maxIndex(): number {
+    return Math.max(0, this.projects.length - this.visibleCards);
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.updateVisibleCards();
+  }
+
+  private updateVisibleCards(): void {
+    const width = window.innerWidth;
+    if (width >= 1200) {
+      this.visibleCards = 3;
+    } else if (width >= 768) {
+      this.visibleCards = 2;
+    } else {
+      this.visibleCards = 1;
+    }
+    // Adjust current index if out of bounds
+    if (this.currentIndex > this.maxIndex) {
+      this.currentIndex = this.maxIndex;
+    }
+  }
+
+  prevSlide(): void {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  nextSlide(): void {
+    if (this.currentIndex < this.maxIndex) {
+      this.currentIndex++;
+    }
+  }
+
+  goToSlide(index: number): void {
+    this.currentIndex = index;
   }
 
   private loadProjects(): void {
