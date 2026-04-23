@@ -3,7 +3,7 @@
 
     <h2 class="section-title">Mis Proyectos</h2>
     <p class="section-description">
-      Aquí puedes explorar una selección de mis trabajos más recientes y destacados. Cada proyecto refleja mi pasión por crear soluciones web innovadoras y eficientes.
+      Selección de trabajos recientes. Desliza para explorar cada proyecto.
     </p>
 
     <!-- Loading State -->
@@ -24,18 +24,48 @@
       </div>
     }
 
-    <!-- Projects Grid -->
-    @if (!isLoading) {
-      <div class="projects-grid">
-        @for (project of projects; track project.title) {
-          <app-project-card
-            [title]="project.title"
-            [description]="project.description"
-            [imageUrl]="project.imageUrl"
-            [technologyIcons]="project.technologyIcons"
-            [liveDemoUrl]="project.liveDemoUrl"
-            [githubUrl]="project.githubUrl"
-          ></app-project-card>
+    <!-- Projects Carousel -->
+    @if (!isLoading && projects.length > 0) {
+      <div class="carousel-container">
+        <!-- Previous Button -->
+        <button class="carousel-nav prev" (click)="prevSlide()" [disabled]="currentIndex === 0">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Carousel Track -->
+        <div class="carousel-viewport">
+          <div class="carousel-track" [style.transform]="'translateX(-' + (currentIndex * (100 / visibleCards)) + '%)'">
+            @for (project of projects; track project.title; let i = $index) {
+              <div class="carousel-card" [class.active]="i === currentIndex">
+                <app-project-card
+                  [title]="project.title"
+                  [description]="project.description"
+                  [imageUrl]="project.imageUrl"
+                  [technologyIcons]="project.technologyIcons"
+                  [liveDemoUrl]="project.liveDemoUrl"
+                  [githubUrl]="project.githubUrl"
+                ></app-project-card>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <button class="carousel-nav next" (click)="nextSlide()" [disabled]="currentIndex >= maxIndex">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Dots Navigation -->
+      <div class="carousel-dots">
+        @for (project of projects; track project.title; let i = $index) {
+          @if (i % visibleCards === 0) {
+            <button
+              class="dot"
+              [class.active]="i === currentIndex"
+              (click)="goToSlide(i)"
+            ></button>
+          }
         }
       </div>
     }

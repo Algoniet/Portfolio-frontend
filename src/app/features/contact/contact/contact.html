@@ -1,49 +1,101 @@
-<!-- src/app/pages/contact/contact.component.html -->
-
-<section class="contact-section">
-  <div class="container">
-    <h2 class="section-title">Contáctame</h2>
-    <p class="section-description">
-      ¿Tienes un proyecto en mente, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!
-    </p>
-
-    <!-- Añadir (ngSubmit) y [formGroup] o [(ngModel)] a los inputs -->
-    <form class="contact-form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="contactForm.name" required placeholder="Tu Nombre">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="contactForm.email" required placeholder="alvarogn1297@ejemplo.com">
-      </div>
-
-      <div class="form-group">
-        <label for="message">Mensaje:</label>
-        <textarea id="message" name="message" rows="6" [(ngModel)]="contactForm.message" required placeholder="Escribe aquí tu mensaje..."></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-        {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+@if (isOpen) {
+  <div class="contact-modal-overlay" (click)="closeModal()">
+    <div class="contact-modal" (click)="$event.stopPropagation()">
+      <!-- Botón de cerrar -->
+      <button class="close-button" (click)="closeModal()" aria-label="Cerrar modal">
+        <i class="fa-solid fa-times"></i>
       </button>
 
-      <!-- Mensaje de éxito/error -->
-      @if (submitMessage) {
-        <p [class.success-message]="isSuccess" [class.error-message]="!isSuccess">{{ submitMessage }}</p>
-      }
-    </form>
+      <div class="modal-content">
+        <h2 class="section-title">Contáctame</h2>
+        <p class="section-description">
+          ¿Tienes un proyecto en mente, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!
+        </p>
 
-    <div class="social-links">
-      <p>También puedes encontrarme en:</p>
-      <div class="social-icons-group">
-        <a href="https://linkedin.com/in/tuperfil" target="_blank" rel="noopener noreferrer" class="social-icon">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/tuperfil" target="_blank" rel="noopener noreferrer" class="social-icon">
-          <i class="fa-brands fa-github"></i>
-        </a>
+        <!-- Aviso de configuración -->
+      <!--   @if (!isServiceConfigured) {
+          <div class="config-warning">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <p>
+              <strong>Servicio no configurado:</strong> Por favor, configura tus credenciales de EmailJS en
+              <code>src/app/features/contact/contact.service.ts</code>
+            </p>
+          </div>
+        } -->
+
+        <form class="contact-form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="contact-name">Nombre:</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              [(ngModel)]="contactForm.name"
+              required
+              placeholder="Tu Nombre"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email:</label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              [(ngModel)]="contactForm.email"
+              required
+              placeholder="ejemplo@ejemplo.com"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Mensaje:</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              [(ngModel)]="contactForm.message"
+              required
+              placeholder="Escribe aquí tu mensaje..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+          </button>
+
+          <!-- Mensaje de éxito/error -->
+          @if (submitMessage) {
+            <p [class.success-message]="isSuccess" [class.error-message]="!isSuccess">
+              {{ submitMessage }}
+            </p>
+          }
+        </form>
+
+        <div class="social-links">
+          <p>También puedes encontrarme en:</p>
+          <div class="social-icons-group">
+            <a
+              href="https://linkedin.com/in/tuperfil"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://github.com/tuperfil"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+}

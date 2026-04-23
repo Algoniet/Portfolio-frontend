@@ -1,13 +1,24 @@
 .projects-section {
-  padding: calc(var(--spacing-xl) * 2) 0;
+  padding: var(--spacing-lg) 0;
   color: var(--text-light);
   text-align: center;
+  min-height: calc(100vh - 200px);
+  max-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .projects-section .project-main-content {
   max-width: var(--breakpoint-xl);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .projects-section .section-title {
@@ -105,11 +116,114 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Carousel Styles */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  will-change: transform;
+}
+
+.carousel-card {
+  flex: 0 0 calc(100% / 3);
+  padding: 0 var(--spacing-sm);
+  box-sizing: border-box;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  height: 500px; /* Fixed height for carousel cards */
+}
+
+.carousel-card app-project-card {
+  display: block;
+  height: 100%;
+}
+
+.carousel-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.carousel-card:not(.active) {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.carousel-nav {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.carousel-nav:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+}
+
+.carousel-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.carousel-nav i {
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Dots Navigation */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+}
+
+.carousel-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--background-light);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dots .dot:hover {
+  background-color: var(--secondary-color);
+}
+
+.carousel-dots .dot.active {
+  background-color: var(--primary-color);
+  transform: scale(1.2);
+}
+
 /* Media Queries */
 @media (max-width: 1199.98px) {
-  .projects-section .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+  .carousel-card {
+    flex: 0 0 calc(100% / 3);
+    height: 480px;
   }
 }
 
@@ -126,8 +240,43 @@
     font-size: var(--font-size-base);
   }
 
-  .projects-section .projects-grid {
-    grid-template-columns: 1fr;
-    padding: 0;
+  .carousel-card {
+    flex: 0 0 50%;
+    height: 450px;
+  }
+
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .carousel-card {
+    flex: 0 0 100%;
+    padding: 0 var(--spacing-xs);
+    height: 420px;
+  }
+
+  .carousel-container {
+    gap: var(--spacing-xs);
+  }
+
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-nav i {
+    font-size: 1rem;
+  }
+
+  .carousel-dots {
+    margin-top: var(--spacing-lg);
+  }
+
+  .carousel-dots .dot {
+    width: 10px;
+    height: 10px;
   }
 }

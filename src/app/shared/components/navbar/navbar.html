@@ -1,4 +1,34 @@
 <header class="app-header">
+  <!-- Toolbar superior derecha: idioma y tema -->
+  <div class="top-toolbar">
+    <!-- Dropdown de idioma -->
+    <div class="lang-dropdown" [class.open]="isLangDropdownOpen">
+      <button class="toolbar-btn lang-btn" title="Seleccionar idioma" (click)="toggleLangDropdown($event)">
+        <img class="flag-display" [src]="getCurrentFlagUrl()" [alt]="currentLang">
+        <span class="lang-code-display">{{ currentLang }}</span>
+        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+      </button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" [class.active]="currentLang === 'ESP'" (click)="setLanguage('ESP')">
+          <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="ES">
+          <span class="lang-name">Español</span>
+        </button>
+        <button class="dropdown-item" [class.active]="currentLang === 'EN'" (click)="setLanguage('EN')">
+          <img class="flag-icon" src="https://flagcdn.com/w40/gb.png" alt="EN">
+          <span class="lang-name">English</span>
+        </button>
+        <button class="dropdown-item" [class.active]="currentLang === 'PT'" (click)="setLanguage('PT')">
+          <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="PT">
+          <span class="lang-name">Português (BR)</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="toolbar-btn" title="Cambiar tema" (click)="toggleTheme()">
+      <i class="fa-solid" [class.fa-sun]="isDarkMode" [class.fa-moon]="!isDarkMode"></i>
+    </button>
+  </div>
+
   <div class="navbar-floating" [class.hidden]="isMenuEffectivelyHidden">
     <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
       class="nav-button">Inicio</a>
@@ -7,9 +37,13 @@
 
     <a [routerLink]="['/projects']" routerLinkActive="active" class="nav-button">Proyectos</a>
 
-    <a [routerLink]="['/contact']" routerLinkActive="active" class="nav-button">Contacto
-      <i class="fa-solid fa-envelope"></i>
-    </a>
+    <!-- Separador visual antes del botón de contacto -->
+    <div class="nav-separator"></div>
+
+    <button class="nav-button contact-btn" (click)="openContactModal()">
+      <span>Contacto</span>
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
   </div>
 
   <button class="toggle-button" (click)="toggleMenu()" [class.visible]="isMenuEffectivelyHidden">
