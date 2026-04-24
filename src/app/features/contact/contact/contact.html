@@ -1,44 +1,30 @@
 @if (isOpen) {
   <div class="contact-modal-overlay" (click)="closeModal()">
     <div class="contact-modal" (click)="$event.stopPropagation()">
-      <!-- Botón de cerrar -->
-      <button class="close-button" (click)="closeModal()" aria-label="Cerrar modal">
+      <button class="close-button" (click)="closeModal()" [attr.aria-label]="'CONTACT.TITLE' | translate">
         <i class="fa-solid fa-times"></i>
       </button>
 
       <div class="modal-content">
-        <h2 class="section-title">Contáctame</h2>
-        <p class="section-description">
-          ¿Tienes un proyecto en mente, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!
-        </p>
-
-        <!-- Aviso de configuración -->
-      <!--   @if (!isServiceConfigured) {
-          <div class="config-warning">
-            <i class="fa-solid fa-exclamation-triangle"></i>
-            <p>
-              <strong>Servicio no configurado:</strong> Por favor, configura tus credenciales de EmailJS en
-              <code>src/app/features/contact/contact.service.ts</code>
-            </p>
-          </div>
-        } -->
+        <h2 class="section-title">{{ 'CONTACT.TITLE' | translate }}</h2>
+        <p class="section-description">{{ 'CONTACT.DESCRIPTION' | translate }}</p>
 
         <form class="contact-form" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="contact-name">Nombre:</label>
+            <label for="contact-name">{{ 'CONTACT.NAME_LABEL' | translate }}</label>
             <input
               type="text"
               id="contact-name"
               name="name"
               [(ngModel)]="contactForm.name"
               required
-              placeholder="Tu Nombre"
+              [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
               autocomplete="name"
             />
           </div>
 
           <div class="form-group">
-            <label for="contact-email">Email:</label>
+            <label for="contact-email">{{ 'CONTACT.EMAIL_LABEL' | translate }}</label>
             <input
               type="email"
               id="contact-email"
@@ -51,22 +37,21 @@
           </div>
 
           <div class="form-group">
-            <label for="contact-message">Mensaje:</label>
+            <label for="contact-message">{{ 'CONTACT.MESSAGE_LABEL' | translate }}</label>
             <textarea
               id="contact-message"
               name="message"
               rows="5"
               [(ngModel)]="contactForm.message"
               required
-              placeholder="Escribe aquí tu mensaje..."
+              [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
             ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-            {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+            {{ isSubmitting ? ('CONTACT.SENDING' | translate) : ('CONTACT.SEND_BUTTON' | translate) }}
           </button>
 
-          <!-- Mensaje de éxito/error -->
           @if (submitMessage) {
             <p [class.success-message]="isSuccess" [class.error-message]="!isSuccess">
               {{ submitMessage }}
@@ -75,10 +60,10 @@
         </form>
 
         <div class="social-links">
-          <p>También puedes encontrarme en:</p>
+          <p>{{ 'CONTACT.SOCIAL_TEXT' | translate }}</p>
           <div class="social-icons-group">
             <a
-              href="https://linkedin.com/in/tuperfil"
+              href="https://linkedin.com/in/alvaro-gn/"
               target="_blank"
               rel="noopener noreferrer"
               class="social-icon"
@@ -86,7 +71,7 @@
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
             <a
-              href="https://github.com/tuperfil"
+              href="https://github.com/Algoniet"
               target="_blank"
               rel="noopener noreferrer"
               class="social-icon"

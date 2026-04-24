@@ -1,12 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProjectCard } from "../../shared/components/project-card/project-card";
 import { Project } from '../../core/models/project.model';
 import { GithubService } from 'src/app/core/services/github/github.service';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [ProjectCard, CommonModule],
+  imports: [ProjectCard, CommonModule, TranslateModule],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.css'
 })
@@ -15,11 +16,13 @@ export class ProjectDetail implements OnInit {
   isLoading = true;
   errorMessage: string | null = null;
 
-  // Carousel properties
   currentIndex = 0;
   visibleCards = 3;
 
-  constructor(private githubService: GithubService) {}
+  constructor(
+    private githubService: GithubService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.loadProjects();
@@ -44,7 +47,6 @@ export class ProjectDetail implements OnInit {
     } else {
       this.visibleCards = 1;
     }
-    // Adjust current index if out of bounds
     if (this.currentIndex > this.maxIndex) {
       this.currentIndex = this.maxIndex;
     }
@@ -77,23 +79,19 @@ export class ProjectDetail implements OnInit {
       },
       error: (error) => {
         console.error('Error loading projects:', error);
-        this.errorMessage = 'No se pudieron cargar los proyectos desde GitHub. Mostrando proyectos locales.';
+        this.errorMessage = this.translate.instant('PROJECTS.ERROR_LOAD');
         this.projects = this.githubService.getFallbackProjects();
         this.isLoading = false;
       }
     });
 
-    // Subscribe to error state from service
     this.githubService.error$.subscribe(error => {
       if (error) {
-        this.errorMessage = error;
+        this.errorMessage = this.translate.instant('PROJECTS.ERROR_LOAD');
       }
     });
   }
 
-  /**
-   * Retry loading projects
-   */
   retryLoad(): void {
     this.githubService.clearCache();
     this.loadProjects();

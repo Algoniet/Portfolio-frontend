@@ -172,6 +172,12 @@ ul, ol {
   position: relative;
 }
 
+@media (max-width: 991.98px) {
+  .main-container {
+    overflow: visible;
+  }
+}
+
 .main-content {
   flex-grow: 1;
   padding: var(--spacing-md) var(--spacing-lg);

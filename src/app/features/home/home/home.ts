@@ -2,11 +2,12 @@ import { animate, keyframes, state, style, transition, trigger } from '@angular/
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'home', 
   standalone: true,
-  imports: [CommonModule, RouterLink], 
+  imports: [CommonModule, RouterLink, TranslateModule],
   templateUrl: './home.html', 
   styleUrl: './home.css',   
   animations: [ 

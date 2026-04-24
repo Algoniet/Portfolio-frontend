@@ -3,24 +3,23 @@ import { Component, HostListener, NgZone, OnDestroy, OnInit, ElementRef } from '
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { fromEvent, Subscription, throttleTime } from 'rxjs';
 import { ContactModalService } from '../../../features/contact/contact-modal.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink,RouterLinkActive,CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, TranslateModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
-export class Navbar implements OnInit,OnDestroy {
+export class Navbar implements OnInit, OnDestroy {
 
   constructor(
     private ngZone: NgZone,
     private contactModalService: ContactModalService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private translate: TranslateService
   ) { }
 
-  /**
-   * Cierra el dropdown al hacer clic fuera de él.
-   */
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -31,27 +30,28 @@ export class Navbar implements OnInit,OnDestroy {
   isMenuHiddenByScroll: boolean = false;
   isManuallyOpened: boolean = false;
 
-  // Estado del tema (oscuro por defecto)
   isDarkMode: boolean = true;
 
-  // Idioma actual (códigos de visualización: ESP, EN, PT)
   currentLang: string = 'ESP';
 
-  // Estado del dropdown de idioma
   isLangDropdownOpen: boolean = false;
 
-  // URLs de banderas (cdn flagcdn)
   flagUrls: { [key: string]: string } = {
     'ESP': 'https://flagcdn.com/w40/es.png',
     'EN': 'https://flagcdn.com/w40/gb.png',
     'PT': 'https://flagcdn.com/w40/br.png'
   };
 
-  // Mapa interno para localStorage/API
   private langCodeMap: { [key: string]: string } = {
-    'ESP': 'ES',
-    'EN': 'EN',
-    'PT': 'PT'
+    'ESP': 'es',
+    'EN': 'en',
+    'PT': 'pt'
+  };
+
+  private displayMap: { [key: string]: string } = {
+    'es': 'ESP',
+    'en': 'EN',
+    'pt': 'PT'
   };
 
   get isMenuEffectivelyHidden(): boolean {
@@ -70,14 +70,11 @@ export class Navbar implements OnInit,OnDestroy {
     this.isManuallyOpened = false;
     this.lastScrollY = window.scrollY;
 
-    // Cargar preferencias guardadas
     this.loadPreferences();
 
     this.scrollSubscription = this.ngZone.runOutsideAngular(() => {
       return fromEvent(window, 'scroll')
-        .pipe(
-          throttleTime(50)
-        )
+        .pipe(throttleTime(50))
         .subscribe(() => {
           if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
@@ -127,60 +124,37 @@ export class Navbar implements OnInit,OnDestroy {
     }
   }
 
-  /**
-   * Abre el modal de contacto.
-   */
   openContactModal(): void {
     this.contactModalService.openContactModal();
   }
 
-  /**
-   * Cambia entre tema claro y oscuro.
-   */
   toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('light-mode', !this.isDarkMode);
     localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
   }
 
-  /**
-   * Abre/cierra el dropdown de idioma.
-   */
   toggleLangDropdown(event: Event): void {
     event.stopPropagation();
     this.isLangDropdownOpen = !this.isLangDropdownOpen;
   }
 
-  /**
-   * Cierra el dropdown de idioma.
-   */
   closeLangDropdown(): void {
     this.isLangDropdownOpen = false;
   }
 
-  /**
-   * Obtiene la URL de la bandera del idioma actual.
-   */
   getCurrentFlagUrl(): string {
     return this.flagUrls[this.currentLang] || this.flagUrls['ESP'];
   }
 
-  /**
-   * Establece el idioma seleccionado.
-   */
   setLanguage(lang: string): void {
     this.currentLang = lang;
-    // Guardar el código interno en localStorage
-    const storageCode = this.langCodeMap[lang] || lang;
-    localStorage.setItem('lang', storageCode);
+    const translateCode = this.langCodeMap[lang] || 'es';
+    this.translate.use(translateCode);
+    localStorage.setItem('lang', translateCode);
     this.isLangDropdownOpen = false;
-    // Aquí se implementaría la lógica de cambio de idioma real
-    console.log('Idioma cambiado a:', this.currentLang);
   }
 
-  /**
-   * Carga las preferencias guardadas del usuario.
-   */
   private loadPreferences(): void {
     const savedTheme = localStorage.getItem('theme');
     const savedLang = localStorage.getItem('lang');
@@ -190,14 +164,11 @@ export class Navbar implements OnInit,OnDestroy {
       document.body.classList.toggle('light-mode', !this.isDarkMode);
     }
 
-    if (savedLang) {
-      // Convertir código de almacenamiento a código de visualización
-      const displayMap: { [key: string]: string } = {
-        'ES': 'ESP',
-        'EN': 'EN',
-        'PT': 'PT'
-      };
-      this.currentLang = displayMap[savedLang] || savedLang;
+    if (savedLang && this.displayMap[savedLang]) {
+      this.currentLang = this.displayMap[savedLang];
+      this.translate.use(savedLang);
+    } else {
+      this.translate.use('es');
     }
   }
 }

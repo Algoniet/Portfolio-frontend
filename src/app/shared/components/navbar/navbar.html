@@ -31,17 +31,16 @@
 
   <div class="navbar-floating" [class.hidden]="isMenuEffectivelyHidden">
     <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-      class="nav-button">Inicio</a>
+      class="nav-button">{{ 'NAV.HOME' | translate }}</a>
 
-    <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">Sobre Mí</a>
+    <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">{{ 'NAV.ABOUT' | translate }}</a>
 
-    <a [routerLink]="['/projects']" routerLinkActive="active" class="nav-button">Proyectos</a>
+    <a [routerLink]="['/projects']" routerLinkActive="active" class="nav-button">{{ 'NAV.PROJECTS' | translate }}</a>
 
-    <!-- Separador visual antes del botón de contacto -->
     <div class="nav-separator"></div>
 
     <button class="nav-button contact-btn" (click)="openContactModal()">
-      <span>Contacto</span>
+      <span>{{ 'NAV.CONTACT' | translate }}</span>
       <i class="fa-solid fa-paper-plane"></i>
     </button>
   </div>

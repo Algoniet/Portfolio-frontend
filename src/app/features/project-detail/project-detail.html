@@ -1,38 +1,31 @@
 <section class="projects-section">
   <div class="project-main-content">
 
-    <h2 class="section-title">Mis Proyectos</h2>
-    <p class="section-description">
-      Selección de trabajos recientes. Desliza para explorar cada proyecto.
-    </p>
+    <h2 class="section-title">{{ 'PROJECTS.TITLE' | translate }}</h2>
+    <p class="section-description">{{ 'PROJECTS.DESCRIPTION' | translate }}</p>
 
-    <!-- Loading State -->
     @if (isLoading) {
       <div class="loading-container">
         <div class="loading-spinner"></div>
-        <p>Cargando proyectos...</p>
+        <p>{{ 'PROJECTS.LOADING' | translate }}</p>
       </div>
     }
 
-    <!-- Error Message -->
     @if (errorMessage && !isLoading) {
       <div class="error-message">
         <p>{{ errorMessage }}</p>
         <button class="btn btn-secondary" (click)="retryLoad()">
-          Reintentar
+          {{ 'PROJECTS.RETRY' | translate }}
         </button>
       </div>
     }
 
-    <!-- Projects Carousel -->
     @if (!isLoading && projects.length > 0) {
       <div class="carousel-container">
-        <!-- Previous Button -->
         <button class="carousel-nav prev" (click)="prevSlide()" [disabled]="currentIndex === 0">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
 
-        <!-- Carousel Track -->
         <div class="carousel-viewport">
           <div class="carousel-track" [style.transform]="'translateX(-' + (currentIndex * (100 / visibleCards)) + '%)'">
             @for (project of projects; track project.title; let i = $index) {
@@ -50,13 +43,11 @@
           </div>
         </div>
 
-        <!-- Next Button -->
         <button class="carousel-nav next" (click)="nextSlide()" [disabled]="currentIndex >= maxIndex">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
       </div>
 
-      <!-- Dots Navigation -->
       <div class="carousel-dots">
         @for (project of projects; track project.title; let i = $index) {
           @if (i % visibleCards === 0) {
@@ -70,10 +61,9 @@
       </div>
     }
 
-    <!-- Empty State -->
     @if (!isLoading && projects.length === 0 && !errorMessage) {
       <div class="empty-state">
-        <p>No hay proyectos disponibles en este momento.</p>
+        <p>{{ 'PROJECTS.EMPTY' | translate }}</p>
       </div>
     }
   </div>

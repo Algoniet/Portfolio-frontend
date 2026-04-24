@@ -435,8 +435,17 @@
    ========================================================================== */
 
 @media (max-width: 991.98px) {
+  /* Allow full scroll on tablet/mobile — fixed 100vh no longer works */
+  .about-section {
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+    padding-bottom: 80px;
+  }
+
   .about-container {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem 1.5rem;
+    overflow: visible;
   }
 
   .about-hero {
@@ -483,12 +492,21 @@
     padding: 0.5rem;
   }
 
+  /* Let content-grid grow naturally and cards use internal scroll */
   .content-grid {
     grid-template-columns: 1fr;
-    height: 320px;
-    min-height: 320px;
-    max-height: 320px;
+    height: auto;
+    min-height: auto;
+    max-height: none;
     gap: 0.75rem;
+  }
+
+  .content-card {
+    max-height: 320px;
+  }
+
+  .card-body.scrollable {
+    max-height: 250px;
   }
 
   .content-card:last-child {
@@ -497,6 +515,10 @@
 }
 
 @media (max-width: 575.98px) {
+  .about-section {
+    padding-bottom: 90px;
+  }
+
   .about-title {
     font-size: 1.5rem;
   }
@@ -525,23 +547,30 @@
 
   .hero-stats {
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .stat-number {
     font-size: 1.2rem;
   }
 
-  .carousel-row {
-    gap: 0.5rem;
-  }
-
-  .carousel-label {
-    width: 50px;
-    font-size: 0.6rem;
+  /* Only show Frontend carousel on very small screens */
+  .carousel-column:nth-child(2),
+  .carousel-column:nth-child(3) {
+    display: none;
   }
 
   .tech-pill .tech-name {
     font-size: 0.65rem;
+  }
+
+  .content-card {
+    max-height: 280px;
+  }
+
+  .card-body.scrollable {
+    max-height: 210px;
   }
 
   .card-header h2 {

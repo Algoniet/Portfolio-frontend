@@ -220,7 +220,7 @@
 .latest-section {
   background-color: var(--background-darker);
   padding: calc(var(--spacing-xl) * 2) 0;
-  padding-bottom: calc(var(--spacing-xxl) * 5);
+  padding-bottom: calc(var(--spacing-xxl) * 5); /* large space for floating navbar */
 }
 
 .latest-section .container {
@@ -342,8 +342,32 @@
 }
 
 @media (max-width: 991.98px) {
+  .latest-section {
+    padding-bottom: calc(var(--spacing-xxl) * 3);
+  }
+
   .latest-section .latest-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-cta-section {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .contact-cta-section .container {
+    padding-bottom: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .latest-section {
+    padding-top: var(--spacing-xl);
+    padding-bottom: calc(var(--spacing-xxl) * 2);
+  }
+
+  .hero-section .container {
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-xxl);
   }
 }
 

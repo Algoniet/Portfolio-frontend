@@ -5,15 +5,10 @@
         <span class="code-intro">Hello World/></span><br>
         <span class="highlight">Álvaro Gómez</span>,
         <br>
-        Desarrollador <span class="highlight">Full-stack</span> Junior.
+        <span [innerHTML]="'HOME.HERO_ROLE' | translate"></span>
       </h1>
 
-      <p class="tagline">
-        Transformo ideas innovadoras en soluciones web robustas y escalables,
-        abarcando desde el diseño de interfaz de usuario hasta la lógica del servidor.
-        Mi pasión radica en construir experiencias digitales fluidas y eficientes,
-        siempre aprendiendo y adaptándome a las últimas tecnologías.
-      </p>
+      <p class="tagline">{{ 'HOME.TAGLINE' | translate }}</p>
 
       <div class="hero-actions">
         <div class="social-links">
@@ -27,7 +22,7 @@
 
         <div class="cta-buttons">
           <a href="assets/docs/curriculum-alvaro-gomez.pdf" download="curriculum-alvaro-gomez.pdf" class="btn btn-secondary">
-            Descargar CV
+            {{ 'HOME.DOWNLOAD_CV' | translate }}
           </a>
         </div>
       </div>
@@ -41,28 +36,22 @@
 
 <section id="latestSection" class="latest-section">
   <div class="container">
-    <h2 class="section-title">Lo Más Reciente</h2>
+    <h2 class="section-title">{{ 'HOME.LATEST_TITLE' | translate }}</h2>
     <div class="latest-grid">
       <div #experienceCard class="latest-card experience-card">
-        <h3 class="card-title"><i class="fa-solid fa-briefcase"></i> Última Experiencia Laboral</h3>
-        <p class="card-subtitle">Desarrollador Full-Stack en Pentec</p>
-        <p class="card-date">Febrero 2024 - Actual</p>
-        <p class="card-description">
-          Desarrollo y mantenimiento de interfaces de usuario para aplicaciones web escalables utilizando Angular y
-          TypeScript. Colaboración en equipos ágiles.
-        </p>
-        <a [routerLink]="['/about']" class="card-link">Ver más en Sobre Mí <i class="fa-solid fa-arrow-right"></i></a>
+        <h3 class="card-title"><i class="fa-solid fa-briefcase"></i> {{ 'HOME.EXP_CARD_TITLE' | translate }}</h3>
+        <p class="card-subtitle">{{ 'HOME.EXP_CARD_SUBTITLE' | translate }}</p>
+        <p class="card-date">{{ 'HOME.EXP_CARD_DATE' | translate }}</p>
+        <p class="card-description">{{ 'HOME.EXP_CARD_DESC' | translate }}</p>
+        <a [routerLink]="['/about']" class="card-link">{{ 'HOME.EXP_CARD_LINK' | translate }} <i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
-      <div #projectCard class="latest-card project-card ">
-        <h3 class="card-title"><i class="fa-solid fa-code"></i> Último Proyecto Destacado</h3>
-        <p class="card-subtitle">Plataforma de Gestión de Contenidos</p>
-        <p class="card-date">Junio 2024</p>
-        <p class="card-description">
-          Diseño y desarrollo de un sistema CMS personalizado con React y Node.js, incluyendo autenticación de usuarios
-          y API RESTful.
-        </p>
-        <a [routerLink]="['/projects']" class="card-link">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+      <div #projectCard class="latest-card project-card">
+        <h3 class="card-title"><i class="fa-solid fa-code"></i> {{ 'HOME.PROJECT_CARD_TITLE' | translate }}</h3>
+        <p class="card-subtitle">{{ 'HOME.PROJECT_CARD_SUBTITLE' | translate }}</p>
+        <p class="card-date">{{ 'HOME.PROJECT_CARD_DATE' | translate }}</p>
+        <p class="card-description">{{ 'HOME.PROJECT_CARD_DESC' | translate }}</p>
+        <a [routerLink]="['/projects']" class="card-link">{{ 'HOME.PROJECT_CARD_LINK' | translate }} <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -70,10 +59,10 @@
 
 <section class="contact-cta-section">
   <div class="container">
-    <h2 class="cta-title">¿Listo para construir tu visión?</h2>
-    <p class="cta-description">Hablemos de cómo mis habilidades pueden impulsar tu próximo proyecto.</p>
+    <h2 class="cta-title">{{ 'HOME.CTA_TITLE' | translate }}</h2>
+    <p class="cta-description">{{ 'HOME.CTA_DESC' | translate }}</p>
     <a [routerLink]="['/contact']" class="btn btn-primary cta-button">
-      Contactar Ahora <i class="fa-solid fa-arrow-right"></i>
+      {{ 'HOME.CTA_BUTTON' | translate }} <i class="fa-solid fa-arrow-right"></i>
     </a>
   </div>
 </section>

@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TechnologyIcon } from '../../../core/models/project.model';
 
 @Component({
   selector: 'app-project-card',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './project-card.html',
   styleUrl: './project-card.css'
 })

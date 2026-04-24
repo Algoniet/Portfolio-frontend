@@ -3,12 +3,10 @@
   color: var(--text-light);
   text-align: center;
   min-height: calc(100vh - 200px);
-  max-height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
 }
 
 .projects-section .project-main-content {
@@ -46,14 +44,6 @@
   margin-right: auto;
   line-height: 1.6;
   color: var(--text-dark);
-}
-
-.projects-section .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
-  justify-content: center;
-  padding: 0 var(--spacing-md);
 }
 
 /* Loading state styles */
@@ -110,7 +100,6 @@
   font-size: var(--font-size-lg);
 }
 
-/* Keyframe animation for spinner */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -144,7 +133,7 @@
   padding: 0 var(--spacing-sm);
   box-sizing: border-box;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  height: 500px; /* Fixed height for carousel cards */
+  height: 620px;
 }
 
 .carousel-card app-project-card {
@@ -223,7 +212,7 @@
 @media (max-width: 1199.98px) {
   .carousel-card {
     flex: 0 0 calc(100% / 3);
-    height: 480px;
+    height: 600px;
   }
 }
 
@@ -238,11 +227,12 @@
 
   .projects-section .section-description {
     font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xl);
   }
 
   .carousel-card {
     flex: 0 0 50%;
-    height: 450px;
+    height: 580px;
   }
 
   .carousel-nav {
@@ -252,10 +242,19 @@
 }
 
 @media (max-width: 767.98px) {
+  .projects-section {
+    padding: var(--spacing-lg) 0 calc(var(--spacing-xl) + 60px);
+  }
+
+  .projects-section .project-main-content {
+    padding: 0 var(--spacing-md);
+  }
+
   .carousel-card {
     flex: 0 0 100%;
     padding: 0 var(--spacing-xs);
-    height: 420px;
+    height: auto;
+    min-height: 500px;
   }
 
   .carousel-container {
@@ -278,5 +277,20 @@
   .carousel-dots .dot {
     width: 10px;
     height: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .projects-section .section-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .projects-section .section-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .carousel-nav {
+    width: 32px;
+    height: 32px;
   }
 }
