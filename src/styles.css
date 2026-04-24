@@ -1,31 +1,30 @@
-/* ==========================================================================
-   Global Styles - CSS Variables & Base Styles
-   ========================================================================== */
-
-/* Import FontAwesome */
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
-/* --------------------------------------------------------------------------
-   CSS Custom Properties (Variables Globales)
-   -------------------------------------------------------------------------- */
+/* Devicon font — rutas locales para que funcione sin CDN y en GitHub Pages */
+@font-face {
+  font-family: "devicon";
+  src: url('/assets/fonts/devicon/devicon.woff') format('woff'),
+       url('/assets/fonts/devicon/devicon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ── Variables ─────────────────────────────────────────────────────── */
 :root {
-  /* Colores Base */
   --primary-color: #007bff;
   --primary-color-light: #66b3ff;
   --secondary-color: #28a745;
   --accent-color: #ffc107;
   --border-color: #495057;
 
-  /* Colores de Texto */
   --text-light: #f8f9fa;
   --text-dark: #adb5bd;
 
-  /* Colores de Fondo */
   --background-darker: #000114;
   --background-dark: #21252940;
   --background-light: rgba(0, 123, 255, 0.1);
 
-  /* Tipografía */
   --font-family-base: 'Raleway', sans-serif;
   --font-family-headings: 'Montserrat', sans-serif;
   --font-family-code: 'Fira Code', monospace;
@@ -41,7 +40,6 @@
   --font-size-h2: 2.5rem;
   --font-size-h3: 2rem;
 
-  /* Espaciado */
   --spacing-xxs: 4px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -50,30 +48,24 @@
   --spacing-xl: 3rem;
   --spacing-xxl: 4rem;
 
-  /* Z-index */
   --zindex-tooltip: 1050;
   --zindex-modal: 1100;
   --zindex-navbar: 1200;
 
-  /* Border Radius */
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-pill: 50px;
 
-  /* Transiciones */
   --transition-speed: 0.3s;
 
-  /* Breakpoints (para referencia en JS si es necesario) */
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
 }
 
-/* --------------------------------------------------------------------------
-   Reset y Base
-   -------------------------------------------------------------------------- */
+/* ── Reset ─────────────────────────────────────────────────────────── */
 * {
   margin: 0;
   padding: 0;
@@ -81,21 +73,20 @@
   font-family: var(--font-family-base);
 }
 
+/* Aplicar box-sizing a ::before y ::after, pero NO font-family
+   porque sobreescribiría las fuentes de iconos (FontAwesome, devicon) */
+*::before, *::after {
+  box-sizing: inherit;
+}
+
 html {
   font-size: 100%;
-  box-sizing: border-box;
   width: 100%;
   overflow-x: hidden;
   background-color: var(--background-darker);
 }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
 body {
-  margin: 0;
-  padding: 0;
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   line-height: 1.6;
@@ -108,7 +99,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Configuración de la raíz de la aplicación Angular */
 app-root {
   display: flex;
   flex-direction: column;
@@ -116,9 +106,7 @@ app-root {
   width: 100%;
 }
 
-/* --------------------------------------------------------------------------
-   Tipografía
-   -------------------------------------------------------------------------- */
+/* ── Typography ─────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-headings);
   color: var(--text-light);
@@ -134,35 +122,27 @@ h4 { font-size: var(--font-size-xl); }
 h5 { font-size: var(--font-size-md); }
 h6 { font-size: var(--font-size-base); }
 
-p {
-  margin-bottom: var(--spacing-md);
-}
+p { margin-bottom: var(--spacing-md); }
 
 ul, ol {
   margin-bottom: var(--spacing-md);
   padding-left: var(--spacing-lg);
 }
 
-/* --------------------------------------------------------------------------
-   Layout
-   -------------------------------------------------------------------------- */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover { color: #0056b3; }
+
+/* ── Layout ─────────────────────────────────────────────────────────── */
 .container {
   max-width: var(--breakpoint-xl);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   box-sizing: border-box;
-}
-
-@media (max-width: 991.98px) {
-  .container {
-    padding: 0 var(--spacing-md);
-  }
-}
-
-@media (max-width: 575.98px) {
-  .container {
-    padding: 0 var(--spacing-md);
-  }
 }
 
 .main-container {
@@ -174,55 +154,25 @@ ul, ol {
 }
 
 @media (max-width: 991.98px) {
-  .main-container {
-    overflow: visible;
-  }
+  .container { padding: 0 var(--spacing-md); }
+  .main-container { overflow: visible; }
 }
 
-.main-content {
-  flex-grow: 1;
-  padding: var(--spacing-md) var(--spacing-lg);
-  background-color: var(--background-dark);
-  overflow: hidden;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.margin-top-lg {
-  margin-top: var(--spacing-lg);
-}
-
-/* --------------------------------------------------------------------------
-   Enlaces
-   -------------------------------------------------------------------------- */
-a {
-  text-decoration: none;
-  color: var(--primary-color);
-  transition: color var(--transition-speed) ease;
-}
-
-a:hover {
-  color: #0056b3;
-}
-
-/* --------------------------------------------------------------------------
-   Botones - Clases concretas
-   -------------------------------------------------------------------------- */
+/* ── Buttons ─────────────────────────────────────────────────────────── */
 .btn {
   padding: 0.8rem 2rem;
   border-radius: var(--border-radius-md);
   font-weight: 600;
   text-decoration: none;
-  transition: background-color var(--transition-speed) ease,
-              color var(--transition-speed) ease,
-              border-color var(--transition-speed) ease,
-              transform var(--transition-speed) ease;
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  gap: 0.4rem;
   cursor: pointer;
   border: 2px solid transparent;
   min-height: 44px;
@@ -240,14 +190,17 @@ a:hover {
   border-color: var(--primary-color);
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background-color: #0056b3;
   border-color: #0056b3;
   transform: translateY(-1px);
 }
 
-.btn-primary:active {
-  transform: translateY(0);
+.btn-primary:active:not(:disabled) { transform: translateY(0); }
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -262,7 +215,7 @@ a:hover {
 }
 
 .btn-sm {
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1rem;
   font-size: var(--font-size-sm);
   min-height: 36px;
 }
@@ -273,22 +226,102 @@ a:hover {
   min-height: 52px;
 }
 
-/* --------------------------------------------------------------------------
-   View Transitions
-   -------------------------------------------------------------------------- */
-@view-transition {
-  navigation: auto;
+/* ── Section utilities (reutilizadas en varias páginas) ─────────────── */
+.section-title {
+  font-family: var(--font-family-headings);
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--spacing-xl);
 }
 
-::view-transition-group(*) {
-  animation-duration: 0.5s;
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  margin: var(--spacing-md) auto 0;
 }
 
-/* --------------------------------------------------------------------------
-   Utilidades Responsive
-   -------------------------------------------------------------------------- */
+.section-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-dark);
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Feedback messages ──────────────────────────────────────────────── */
+.success-message {
+  color: var(--secondary-color);
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid var(--secondary-color);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-md);
+  text-align: center;
+  font-size: var(--font-size-sm);
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid #dc3545;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-md);
+  text-align: center;
+  font-size: var(--font-size-sm);
+}
+
+/* ── Loading spinner ────────────────────────────────────────────────── */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: var(--spacing-md);
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--background-light);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Gradient blobs (shared across pages) ───────────────────────────── */
+@keyframes blob-a {
+  0%   { transform: scale(1.0) translate(0, 0); }
+  33%  { transform: scale(1.12) translate(5%, -4%); }
+  66%  { transform: scale(0.95) translate(-4%, 6%); }
+  100% { transform: scale(1.06) translate(3%, -5%); }
+}
+
+@keyframes blob-b {
+  0%   { transform: scale(1.0) translate(0, 0); }
+  33%  { transform: scale(1.08) translate(-5%, 3%); }
+  66%  { transform: scale(1.15) translate(4%, -4%); }
+  100% { transform: scale(0.97) translate(-3%, 5%); }
+}
+
+/* ── View Transitions ───────────────────────────────────────────────── */
+@view-transition { navigation: auto; }
+::view-transition-group(*) { animation-duration: 0.5s; }
+
+/* ── Responsive typography ──────────────────────────────────────────── */
 @media (max-width: 767.98px) {
   h1 { font-size: calc(var(--font-size-h1) * 0.7); }
   h2 { font-size: calc(var(--font-size-h2) * 0.8); }
   h3 { font-size: calc(var(--font-size-h3) * 0.85); }
+  .section-description { font-size: var(--font-size-base); }
 }

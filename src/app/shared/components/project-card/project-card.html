@@ -17,11 +17,7 @@
       <div class="tech-grid">
         @for (tech of technologyIcons; track tech.name) {
           <div class="tech-item">
-            @if (tech.icon.startsWith('devicon')) {
-              <i class="tech-icon devicon {{ tech.icon }}"></i>
-            } @else {
-              <i class="tech-icon {{ tech.icon }}"></i>
-            }
+            <i class="tech-icon {{ tech.icon }}"></i>
             <span class="tech-name">{{ tech.name }}</span>
           </div>
         }

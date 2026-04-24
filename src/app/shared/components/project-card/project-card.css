@@ -16,7 +16,7 @@
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-/* Animated shimmer line sweeps across top on hover */
+/* Shimmer line sweeps top edge on hover */
 .project-card::before {
   content: '';
   position: absolute;
@@ -60,7 +60,6 @@
   justify-content: flex-end;
 }
 
-/* Radial glow blob — moves on hover */
 .banner-glow {
   position: absolute;
   top: -40px;
@@ -78,7 +77,6 @@
   opacity: 0.85;
 }
 
-/* Decorative code lines (bottom-right of banner) */
 .banner-lines {
   position: absolute;
   bottom: 0.8rem;
@@ -143,7 +141,7 @@
 }
 
 /* =====================================================================
-   TECH GRID — no scroll, fills available space
+   TECH GRID — fills available space, no scroll
    ===================================================================== */
 
 .project-techs {

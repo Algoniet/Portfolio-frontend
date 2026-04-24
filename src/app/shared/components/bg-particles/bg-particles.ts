@@ -82,7 +82,9 @@ export class BgParticles implements AfterViewInit, OnDestroy {
     const w = canvas.width;
     const h = canvas.height;
 
-    ctx.clearRect(0, 0, w, h);
+    // Draw dark background so the canvas is self-contained at z-index: -1
+    ctx.fillStyle = '#000114';
+    ctx.fillRect(0, 0, w, h);
 
     for (const p of this.particles) {
       p.x += p.vx;
