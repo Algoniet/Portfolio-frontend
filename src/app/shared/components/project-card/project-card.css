@@ -1,45 +1,125 @@
+/* =====================================================================
+   PROJECT CARD
+   ===================================================================== */
+
 .project-card {
-  background-color: var(--background-light);
+  background: linear-gradient(160deg, rgba(0, 10, 35, 0.95) 0%, rgba(0, 20, 60, 0.85) 100%);
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 123, 255, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   height: 100%;
   min-height: 480px;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Shimmer line sweeps top edge on hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+  transition: left 0.55s ease;
+  z-index: 3;
+}
+
+.project-card:hover::before {
+  left: 100%;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-7px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 123, 255, 0.18);
+  border-color: rgba(0, 123, 255, 0.4);
 }
 
-.project-card .project-image-container {
-  width: 100%;
-  height: 200px;
+/* =====================================================================
+   BANNER HEADER
+   ===================================================================== */
+
+.card-banner {
+  position: relative;
+  min-height: 110px;
+  padding: 1.5rem 1.5rem 1rem;
+  background: linear-gradient(135deg,
+    rgba(0, 8, 30, 0.98) 0%,
+    rgba(0, 55, 130, 0.35) 55%,
+    rgba(0, 15, 50, 0.98) 100%
+  );
+  border-bottom: 1px solid rgba(0, 123, 255, 0.18);
   overflow: hidden;
-  background-color: var(--background-darker);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.project-card .project-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.banner-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 170px;
+  height: 170px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.28) 0%, transparent 68%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.project-card:hover .banner-glow {
+  transform: scale(1.5) translate(-12px, 12px);
+  opacity: 0.85;
+}
+
+.banner-lines {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 0.18;
+  transition: opacity 0.35s ease;
+}
+
+.project-card:hover .banner-lines {
+  opacity: 0.42;
+}
+
+.banner-lines span {
   display: block;
-  transition: transform var(--transition-speed) ease;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 1px;
 }
 
-.project-card .project-image-container img:hover {
-  transform: scale(1.05);
+.banner-lines span:nth-child(1) { width: 72px; }
+.banner-lines span:nth-child(2) { width: 46px; }
+.banner-lines span:nth-child(3) { width: 90px; }
+
+.project-title {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
-.project-card .project-details {
-  padding: var(--spacing-lg);
+/* =====================================================================
+   DETAILS BODY
+   ===================================================================== */
+
+.project-details {
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -47,19 +127,11 @@
   overflow: hidden;
 }
 
-.project-card .project-title {
-  font-size: calc(var(--font-size-xl) * 1.2);
-  color: var(--primary-color);
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
-  flex-shrink: 0;
-}
-
-.project-card .project-description {
-  font-size: var(--font-size-base);
+.project-description {
+  font-size: var(--font-size-sm);
   color: var(--text-dark);
-  line-height: 1.5;
-  margin-bottom: var(--spacing-md);
+  line-height: 1.65;
+  margin-bottom: 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -68,121 +140,152 @@
   flex-shrink: 0;
 }
 
-.project-card .project-techs {
+/* =====================================================================
+   TECH GRID — fills available space, no scroll
+   ===================================================================== */
+
+.project-techs {
   flex: 1;
   min-height: 0;
-  margin-bottom: var(--spacing-md);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--text-dark);
+  margin-bottom: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
   overflow: hidden;
 }
 
-.project-card .tech-grid {
+.tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
   gap: 8px;
 }
 
-.project-card .tech-item {
+.tech-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  padding: 6px 4px;
-  border-radius: var(--border-radius-sm);
-  background-color: var(--background-dark);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  gap: 4px;
+  padding: 8px 4px 6px;
+  height: 56px;
+  border-radius: var(--border-radius-md);
+  background: rgba(0, 123, 255, 0.06);
+  border: 1px solid rgba(0, 123, 255, 0.12);
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
   cursor: default;
-  min-width: 52px;
-  height: 54px;
 }
 
-.project-card .tech-item:hover {
+.tech-item:hover {
+  background: rgba(0, 123, 255, 0.2);
+  border-color: rgba(0, 123, 255, 0.45);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.project-card .tech-item .tech-icon {
+.tech-item .tech-icon {
   font-size: 1.5em;
   line-height: 1;
-  transition: transform 0.2s ease;
 }
 
-.project-card .tech-item .tech-name {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--text-light);
+.tech-item .tech-name {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-dark);
   text-align: center;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  letter-spacing: 0.2px;
 }
 
-.project-card .project-links {
+/* =====================================================================
+   LINKS
+   ===================================================================== */
+
+.project-links {
   flex-shrink: 0;
-  padding-top: var(--spacing-sm);
+  padding-top: 0.75rem;
   display: flex;
-  gap: var(--spacing-md);
+  gap: 0.75rem;
   justify-content: flex-start;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.project-card .project-links .btn:hover i {
-  transform: translateX(5px);
+.project-links .btn {
+  padding: 0.45rem 1rem;
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-/* Media Query para tablets */
+.project-links .btn i {
+  transition: transform 0.2s ease;
+}
+
+.project-links .btn:hover i {
+  transform: translateX(3px);
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
 @media (max-width: 991.98px) {
   .project-card {
     min-height: 440px;
   }
 
-  .project-card .project-links {
-    justify-content: center;
+  .card-banner {
+    min-height: 95px;
+    padding: 1.1rem 1.25rem 0.85rem;
   }
 
-  .project-card .project-title {
-    font-size: var(--font-size-xl);
+  .project-title {
+    font-size: 1.05rem;
   }
 
-  .project-card .project-description {
-    font-size: var(--font-size-sm);
+  .project-details {
+    padding: 1rem 1.25rem;
+  }
+
+  .project-description {
     -webkit-line-clamp: 3;
   }
 
-  .project-card .project-details {
-    padding: var(--spacing-md);
-  }
-
-  .project-card .tech-grid {
+  .tech-grid {
     grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
     gap: 6px;
   }
 
-  .project-card .tech-item {
+  .tech-item {
     height: 50px;
-    padding: 4px;
+    padding: 6px 4px;
   }
 
-  .project-card .tech-item .tech-icon {
+  .tech-item .tech-icon {
     font-size: 1.3em;
   }
 
-  .project-card .tech-item .tech-name {
-    font-size: 9px;
+  .tech-item .tech-name {
+    font-size: 8px;
+  }
+
+  .project-links {
+    justify-content: center;
   }
 }
 
-/* Media Query para móviles */
 @media (max-width: 767.98px) {
   .project-card {
     min-height: 400px;
   }
 
-  .project-card .project-description {
+  .card-banner {
+    min-height: 85px;
+  }
+
+  .project-description {
     -webkit-line-clamp: 3;
   }
 }

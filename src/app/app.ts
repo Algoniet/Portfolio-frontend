@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './shared/components/navbar/navbar';
-import { Footer } from './shared/components/footer/footer';
 import { Contact } from './features/contact/contact/contact';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class App {
   protected title = 'portfolio';
-  constructor(private translate: TranslateService) {
+  constructor(translate: TranslateService) {
     // Idiomas disponibles
     translate.addLangs(['es', 'en' , 'pt']);
 

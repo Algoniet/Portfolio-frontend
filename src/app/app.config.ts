@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideTranslateService({ defaultLanguage: 'es' }),
-    provideTranslateHttpLoader()
+    provideTranslateHttpLoader({ prefix: './assets/i18n/' })
   ]
 };
