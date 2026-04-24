@@ -1,0 +1,82 @@
+{
+  "NAV": {
+    "HOME": "Inicio",
+    "ABOUT": "Sobre Mí",
+    "PROJECTS": "Proyectos",
+    "CONTACT": "Contacto"
+  },
+  "HOME": {
+    "HERO_ROLE": "Desarrollador <span class=\"highlight\">Full-stack</span> Junior.",
+    "TAGLINE": "Transformo ideas innovadoras en soluciones web robustas y escalables, abarcando desde el diseño de interfaz de usuario hasta la lógica del servidor. Mi pasión radica en construir experiencias digitales fluidas y eficientes, siempre aprendiendo y adaptándome a las últimas tecnologías.",
+    "DOWNLOAD_CV": "Descargar CV",
+    "LATEST_TITLE": "Lo Más Reciente",
+    "EXP_CARD_TITLE": "Última Experiencia Laboral",
+    "EXP_CARD_SUBTITLE": "Desarrollador Full-Stack en Pentec",
+    "EXP_CARD_DATE": "Febrero 2024 - Actual",
+    "EXP_CARD_DESC": "Desarrollo y mantenimiento de interfaces de usuario para aplicaciones web escalables utilizando Angular y TypeScript. Colaboración en equipos ágiles.",
+    "EXP_CARD_LINK": "Ver más en Sobre Mí",
+    "PROJECT_CARD_TITLE": "Último Proyecto Destacado",
+    "PROJECT_CARD_SUBTITLE": "Plataforma de Gestión de Contenidos",
+    "PROJECT_CARD_DATE": "Junio 2024",
+    "PROJECT_CARD_DESC": "Diseño y desarrollo de un sistema CMS personalizado con React y Node.js, incluyendo autenticación de usuarios y API RESTful.",
+    "PROJECT_CARD_LINK": "Ver Proyecto",
+    "CTA_TITLE": "¿Listo para construir tu visión?",
+    "CTA_DESC": "Hablemos de cómo mis habilidades pueden impulsar tu próximo proyecto.",
+    "CTA_BUTTON": "Contactar Ahora"
+  },
+  "ABOUT": {
+    "SUBTITLE": "Desarrollador Full-stack",
+    "LEAD_TEXT": "Transformo <span class=\"highlight\">código legacy</span> en arquitecturas modernas. Especializado en el ecosistema <strong>Angular + Spring Boot</strong> con experiencia real migrando aplicaciones empresariales desde JSF.",
+    "BODY_1": "Desde 2022 he trabajado en empresas como <strong>PENTEC</strong>, <strong>Minsait</strong> y <strong>VIEWNEXT</strong>, desarrollando aplicaciones fullstack que conectan frontend dinámicos con APIs robustas. Me apasiona el desarrollo limpio, el trabajo en equipo y encontrar soluciones elegantes a problemas complejos.",
+    "BODY_2": "Actualmente en <strong>Valencia</strong>, combinando trabajo híbrido con aprendizaje continuo. Siempre explorando nuevas tecnologías que aporten valor real a los proyectos.",
+    "YEARS_EXP": "Años exp.",
+    "COMPANIES": "Empresas",
+    "TECHNOLOGIES": "Tecnologías",
+    "EDUCATION_TITLE": "Formación",
+    "EXPERIENCE_TITLE": "Experiencia Laboral",
+    "EDU_1_DEGREE": "Grado Superior en Desarrollo de Aplicaciones Multiplataforma",
+    "EDU_1_INSTITUTION": "PROGRESA Centro de Formación Profesional",
+    "EDU_1_DESC": "Formación en desarrollo multiplataforma con Java, Angular, TypeScript, SQL, HTML, CSS, Android Studio y Swift.",
+    "EDU_2_DEGREE": "Técnico Superior en Mantenimiento Electrónico",
+    "EDU_2_INSTITUTION": "Juan Comenius",
+    "EDU_2_DESC": "Grado superior técnico especializado en mantenimiento de sistemas electrónicos.",
+    "EXP_1_TITLE": "Desarrollador Web Fullstack",
+    "EXP_1_DATE": "Mar 2024 - Actualidad · Valencia (Híbrido)",
+    "EXP_1_DESC": "Desarrollo fullstack con Angular y Spring Boot. Migración de JSF a arquitectura moderna. Implementación de APIs REST y componentes dinámicos. Tecnologías: Java, Spring, Angular, TypeScript, Maven, SVN.",
+    "EXP_2_TITLE": "Desarrollador AEM/JavaScript",
+    "EXP_2_DATE": "Sept 2023 - Feb 2024 · 6 meses (Remoto)",
+    "EXP_2_DESC": "Desarrollo de formularios interactivos en Adobe Experience Manager (AEM). Optimización UX y automatización de flujos. Trabajo en entornos Agile. Tecnologías: AEM, JavaScript, HTML5, CSS3, Git.",
+    "EXP_3_TITLE": "Desarrollador Web",
+    "EXP_3_DATE": "Dic 2022 - Sept 2023 · 10 meses · Valencia",
+    "EXP_3_DESC": "Desarrollo de aplicaciones web con Java, Spring Boot y JavaScript. Pruebas unitarias (JUnit), control de versiones con Git. Formación en microservicios. Tecnologías: Java, Spring Boot, JUnit, Git, SQL, Maven.",
+    "EXP_4_TITLE": "Desarrollador C# (Prácticas)",
+    "EXP_4_DATE": "Mar 2022 - May 2022 · 3 meses · Valencia",
+    "EXP_4_DESC": "Desarrollo de soluciones en C# integradas con PI System. Análisis de datos industriales y visualización en tiempo real. Trabajo en entorno ágil. Tecnologías: C#, PI System, SQL, Git."
+  },
+  "CONTACT": {
+    "TITLE": "Contáctame",
+    "DESCRIPTION": "¿Tienes un proyecto en mente, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!",
+    "NAME_LABEL": "Nombre:",
+    "NAME_PLACEHOLDER": "Tu Nombre",
+    "EMAIL_LABEL": "Email:",
+    "MESSAGE_LABEL": "Mensaje:",
+    "MESSAGE_PLACEHOLDER": "Escribe aquí tu mensaje...",
+    "SENDING": "Enviando...",
+    "SEND_BUTTON": "Enviar Mensaje",
+    "SOCIAL_TEXT": "También puedes encontrarme en:",
+    "SUCCESS_MSG": "¡Mensaje enviado con éxito! Te responderé pronto.",
+    "ERROR_MSG": "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde."
+  },
+  "PROJECTS": {
+    "TITLE": "Mis Proyectos",
+    "DESCRIPTION": "Selección de trabajos recientes. Desliza para explorar cada proyecto.",
+    "LOADING": "Cargando proyectos...",
+    "RETRY": "Reintentar",
+    "EMPTY": "No hay proyectos disponibles en este momento.",
+    "DEMO": "Ver Demo",
+    "ERROR_LOAD": "No se pudieron cargar los proyectos desde GitHub. Mostrando proyectos locales."
+  },
+  "FOOTER": {
+    "RIGHTS": "Todos los derechos reservados."
+  }
+}

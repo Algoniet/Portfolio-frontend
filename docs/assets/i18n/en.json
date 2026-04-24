@@ -1,0 +1,82 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About Me",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact"
+  },
+  "HOME": {
+    "HERO_ROLE": "<span class=\"highlight\">Full-stack</span> Junior Developer.",
+    "TAGLINE": "I transform innovative ideas into robust and scalable web solutions, spanning from user interface design to server-side logic. My passion lies in building smooth and efficient digital experiences, always learning and adapting to the latest technologies.",
+    "DOWNLOAD_CV": "Download CV",
+    "LATEST_TITLE": "Latest",
+    "EXP_CARD_TITLE": "Latest Work Experience",
+    "EXP_CARD_SUBTITLE": "Full-Stack Developer at Pentec",
+    "EXP_CARD_DATE": "February 2024 - Present",
+    "EXP_CARD_DESC": "Development and maintenance of user interfaces for scalable web applications using Angular and TypeScript. Collaboration in agile teams.",
+    "EXP_CARD_LINK": "See more in About Me",
+    "PROJECT_CARD_TITLE": "Latest Featured Project",
+    "PROJECT_CARD_SUBTITLE": "Content Management Platform",
+    "PROJECT_CARD_DATE": "June 2024",
+    "PROJECT_CARD_DESC": "Design and development of a custom CMS system with React and Node.js, including user authentication and RESTful API.",
+    "PROJECT_CARD_LINK": "View Project",
+    "CTA_TITLE": "Ready to build your vision?",
+    "CTA_DESC": "Let's talk about how my skills can boost your next project.",
+    "CTA_BUTTON": "Contact Now"
+  },
+  "ABOUT": {
+    "SUBTITLE": "Full-stack Developer",
+    "LEAD_TEXT": "I transform <span class=\"highlight\">legacy code</span> into modern architectures. Specialized in the <strong>Angular + Spring Boot</strong> ecosystem with real experience migrating enterprise applications from JSF.",
+    "BODY_1": "Since 2022 I have worked at companies like <strong>PENTEC</strong>, <strong>Minsait</strong> and <strong>VIEWNEXT</strong>, developing fullstack applications that connect dynamic frontends with robust APIs. I am passionate about clean development, teamwork and finding elegant solutions to complex problems.",
+    "BODY_2": "Currently in <strong>Valencia</strong>, combining hybrid work with continuous learning. Always exploring new technologies that bring real value to projects.",
+    "YEARS_EXP": "Years exp.",
+    "COMPANIES": "Companies",
+    "TECHNOLOGIES": "Technologies",
+    "EDUCATION_TITLE": "Education",
+    "EXPERIENCE_TITLE": "Work Experience",
+    "EDU_1_DEGREE": "Higher Degree in Cross-Platform Application Development",
+    "EDU_1_INSTITUTION": "PROGRESA Vocational Training Center",
+    "EDU_1_DESC": "Training in cross-platform development with Java, Angular, TypeScript, SQL, HTML, CSS, Android Studio and Swift.",
+    "EDU_2_DEGREE": "Higher Technician in Electronic Maintenance",
+    "EDU_2_INSTITUTION": "Juan Comenius",
+    "EDU_2_DESC": "Advanced technical degree specialized in electronic systems maintenance.",
+    "EXP_1_TITLE": "Fullstack Web Developer",
+    "EXP_1_DATE": "Mar 2024 - Present · Valencia (Hybrid)",
+    "EXP_1_DESC": "Fullstack development with Angular and Spring Boot. Migration from JSF to modern architecture. REST API implementation and dynamic components. Technologies: Java, Spring, Angular, TypeScript, Maven, SVN.",
+    "EXP_2_TITLE": "AEM/JavaScript Developer",
+    "EXP_2_DATE": "Sept 2023 - Feb 2024 · 6 months (Remote)",
+    "EXP_2_DESC": "Development of interactive forms in Adobe Experience Manager (AEM). UX optimization and workflow automation. Work in Agile environments. Technologies: AEM, JavaScript, HTML5, CSS3, Git.",
+    "EXP_3_TITLE": "Web Developer",
+    "EXP_3_DATE": "Dec 2022 - Sept 2023 · 10 months · Valencia",
+    "EXP_3_DESC": "Web application development with Java, Spring Boot and JavaScript. Unit testing (JUnit), version control with Git. Training in microservices. Technologies: Java, Spring Boot, JUnit, Git, SQL, Maven.",
+    "EXP_4_TITLE": "C# Developer (Internship)",
+    "EXP_4_DATE": "Mar 2022 - May 2022 · 3 months · Valencia",
+    "EXP_4_DESC": "Development of C# solutions integrated with PI System. Industrial data analysis and real-time visualization. Work in agile environment. Technologies: C#, PI System, SQL, Git."
+  },
+  "CONTACT": {
+    "TITLE": "Contact Me",
+    "DESCRIPTION": "Do you have a project in mind, a question, or just want to say hello? Feel free to contact me!",
+    "NAME_LABEL": "Name:",
+    "NAME_PLACEHOLDER": "Your Name",
+    "EMAIL_LABEL": "Email:",
+    "MESSAGE_LABEL": "Message:",
+    "MESSAGE_PLACEHOLDER": "Write your message here...",
+    "SENDING": "Sending...",
+    "SEND_BUTTON": "Send Message",
+    "SOCIAL_TEXT": "You can also find me at:",
+    "SUCCESS_MSG": "Message sent successfully! I will reply soon.",
+    "ERROR_MSG": "There was an error sending your message. Please try again later."
+  },
+  "PROJECTS": {
+    "TITLE": "My Projects",
+    "DESCRIPTION": "Selection of recent work. Slide to explore each project.",
+    "LOADING": "Loading projects...",
+    "RETRY": "Retry",
+    "EMPTY": "No projects available at this time.",
+    "DEMO": "Live Demo",
+    "ERROR_LOAD": "Could not load projects from GitHub. Showing local projects."
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved."
+  }
+}
