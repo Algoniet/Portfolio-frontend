@@ -86,6 +86,7 @@ html {
   box-sizing: border-box;
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--background-darker);
 }
 
 *, *::before, *::after {
@@ -99,7 +100,7 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--text-light);
-  background-color: var(--background-darker);
+  background-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;

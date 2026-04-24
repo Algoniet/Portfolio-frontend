@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './shared/components/navbar/navbar';
-import { Footer } from './shared/components/footer/footer';
 import { Contact } from './features/contact/contact/contact';
+import { BgParticles } from './shared/components/bg-particles/bg-particles';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Contact],
+  imports: [RouterOutlet, Navbar, Contact, BgParticles],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
