@@ -163,22 +163,26 @@
   margin: 0 0.25rem;
 }
 
-/* Botón de contacto destacado */
-.nav-button.contact-btn {
+/* Botón de contacto destacado — ruta completa para ganar especificidad */
+.app-header .navbar-floating .nav-button.contact-btn {
   background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.05) 100%);
-  border: 1px solid rgba(0, 123, 255, 0.4);
+  border-color: rgba(0, 123, 255, 0.4);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.nav-button.contact-btn:hover {
+.app-header .navbar-floating .nav-button.contact-btn::after {
+  display: none;
+}
+
+.app-header .navbar-floating .nav-button.contact-btn:hover {
   background: linear-gradient(135deg, rgba(0, 123, 255, 0.35) 0%, rgba(0, 123, 255, 0.15) 100%);
   border-color: var(--primary-color);
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
 }
 
-.nav-button.contact-btn i {
+.app-header .navbar-floating .nav-button.contact-btn i {
   font-size: 0.85rem;
 }
 
@@ -210,14 +214,29 @@
   position: relative;
   font-size: var(--font-size-md);
   color: var(--text-dark);
-  background-color: var(--background-dark);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   text-decoration: none;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
-  transition: all var(--transition-speed) ease, color var(--transition-speed) ease;
+  transition: background var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.app-header .navbar-floating .nav-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--text-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 .app-header .navbar-floating .nav-button::after {
@@ -228,64 +247,67 @@
   transform: translateX(-50%);
   width: 0;
   height: 3px;
-  background-color: var(--primary-color);
-  transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  background-color: var(--secondary-color);
+  transition: width var(--transition-speed) ease;
   border-radius: 2px;
 }
 
-.app-header .navbar-floating .nav-button:hover {
-  background-color: transparent;
-  color: var(--primary-color);
-  transform: translateY(-8px) scale(1.6);
-}
-
-.app-header .navbar-floating .nav-button:hover::after {
-  width: 100%;
-}
-
 .app-header .navbar-floating .nav-button.active {
-  background-color: transparent;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.07) 100%);
+  border-color: rgba(0, 123, 255, 0.4);
   color: var(--primary-color);
   font-weight: 600;
 }
 
 .app-header .navbar-floating .nav-button.active::after {
-  width: 100%;
-  background-color: var(--secondary-color);
+  width: 60%;
 }
 
 .toggle-button {
   pointer-events: none;
   position: fixed;
-  bottom: var(--spacing-xxs);
+  bottom: 1.5rem;
   left: 50%;
-  transform: translateX(-50%) scale(0);
-  background: var(--primary-color);
-  color: var(--background-darker);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  transform: translateX(-50%) translateY(16px);
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.92) 0%, rgba(0, 60, 180, 0.92) 100%);
+  color: #fff;
+  border: 1px solid rgba(100, 170, 255, 0.3);
+  border-radius: 50px;
+  height: 44px;
+  padding: 0 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--font-size-lg);
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  transition: transform 0.1s ease-in, opacity 0.1s ease-in, background-color var(--transition-speed) ease;
+  box-shadow: 0 4px 20px rgba(0, 80, 200, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease-in, opacity 0.1s ease-in;
   z-index: 1201;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.toggle-label {
+  font-family: inherit;
+  font-size: 0.85rem;
 }
 
 .toggle-button.visible {
-  transform: translateX(-50%) scale(1);
+  transform: translateX(-50%) translateY(0);
   opacity: 1;
   pointer-events: auto;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out, background-color var(--transition-speed) ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
 }
 
 .toggle-button:hover {
-  background-color: #3395ff;
-  transform: translateX(-50%) translateY(-3px) scale(1);
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 80, 200, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(30, 145, 255, 0.95) 0%, rgba(0, 80, 200, 0.95) 100%);
 }
 
 /* Media Query para tablets y móviles (max-width: 991.98px) */
@@ -306,36 +328,73 @@
   }
 
   .toggle-button {
-    bottom: var(--spacing-xxs);
-    color: var(--background-darker);
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-  }
-
-  .toggle-button.visible {
-    transform: translateX(-50%) scale(1);
-  }
-
-  .toggle-button:hover {
-    transform: translateX(-50%) translateY(-3px) scale(1);
+    bottom: 1.25rem;
   }
 }
 
 /* Media Query para móviles pequeños (max-width: 575.98px) */
 @media (max-width: 575.98px) {
+  /* Navbar: barra unificada con efecto cristal */
   .app-header .navbar-floating {
-    width: calc(100% - var(--spacing-xl));
-    left: var(--spacing-md);
-    transform: translateX(0) scale(1);
-    right: var(--spacing-md);
-    padding: var(--spacing-xs);
-    bottom: var(--spacing-md);
-    border-radius: var(--border-radius-lg);
-    gap: var(--spacing-sm);
+    width: calc(100% - 2rem);
+    max-width: 420px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) scale(1);
+    padding: 0.3rem;
+    bottom: 1rem;
+    border-radius: 20px;
+    gap: 0;
+    background-color: rgba(5, 10, 40, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 123, 255, 0.25);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 123, 255, 0.07);
   }
 
   .app-header .navbar-floating.hidden {
-    transform: translateY(calc(100% + var(--spacing-md))) scale(0.1);
+    transform: translateX(-50%) translateY(80px);
+    opacity: 0;
+  }
+
+  /* Botones dentro de la barra: fondo transparente, distribución equitativa */
+  .app-header .navbar-floating .nav-button {
+    flex: 1;
+    padding: 0.6rem 0.2rem;
+    font-size: 0.72rem;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 15px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Suprimir animación hover agresiva en móvil */
+  .app-header .navbar-floating .nav-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    box-shadow: none;
+    color: var(--text-light);
+    transform: none;
+  }
+
+  .app-header .navbar-floating .nav-button::after {
+    display: none;
+  }
+
+  .app-header .navbar-floating .nav-button.active {
+    background: rgba(0, 123, 255, 0.18);
+    border: none;
+    color: var(--primary-color);
+  }
+
+  /* Botón de contacto: sutil tint para distinguirlo */
+  .app-header .navbar-floating .nav-button.contact-btn {
+    background: rgba(0, 123, 255, 0.12);
+    border: none;
   }
 
   /* Toolbar más compacto en móvil */
@@ -350,7 +409,7 @@
   }
 
   .lang-btn .lang-code-display {
-    display: none; /* Ocultar texto del idioma en móvil muy pequeño */
+    display: none;
   }
 
   .lang-btn {
@@ -373,25 +432,114 @@
     display: none;
   }
 
-  /* Contacto sin texto en móvil muy pequeño */
+  /* Contacto: solo icono en móvil */
   .nav-button.contact-btn span {
     display: none;
   }
 
+  /* Toggle button: más compacto en móvil */
   .toggle-button {
-    bottom: var(--spacing-xxs);
-    left: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: var(--font-size-md);
-    transform: translateX(-50%) scale(0);
+    bottom: 1rem;
+    height: 40px;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================================
+   LIGHT MODE
+   ========================================================================= */
+
+body.light-mode .toolbar-btn {
+  background-color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 90, 200, 0.22);
+  color: #0d1117;
+}
+
+body.light-mode .toolbar-btn:hover {
+  background-color: rgba(0, 90, 200, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+body.light-mode .lang-code-display {
+  color: #4a5568;
+}
+
+body.light-mode .dropdown-menu {
+  background-color: #ffffff;
+  border-color: rgba(0, 90, 200, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 80, 200, 0.12);
+}
+
+body.light-mode .dropdown-item {
+  color: #0d1117;
+}
+
+body.light-mode .dropdown-item:hover {
+  background-color: rgba(0, 90, 200, 0.1);
+  color: var(--primary-color);
+}
+
+body.light-mode .dropdown-item.active {
+  background-color: rgba(0, 90, 200, 0.15);
+  color: var(--primary-color);
+}
+
+/* Nav buttons — glass azul tenue sobre fondo claro */
+body.light-mode .app-header .navbar-floating .nav-button {
+  background: linear-gradient(135deg, rgba(0, 70, 180, 0.09) 0%, rgba(0, 70, 180, 0.04) 100%);
+  border-color: rgba(0, 70, 180, 0.2);
+  color: #0d1117;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.light-mode .app-header .navbar-floating .nav-button:hover {
+  background: linear-gradient(135deg, rgba(0, 70, 180, 0.16) 0%, rgba(0, 70, 180, 0.08) 100%);
+  border-color: rgba(0, 70, 180, 0.38);
+  color: var(--primary-color);
+  box-shadow: 0 4px 14px rgba(0, 70, 180, 0.18);
+}
+
+body.light-mode .app-header .navbar-floating .nav-button.active {
+  background: linear-gradient(135deg, rgba(0, 100, 220, 0.18) 0%, rgba(0, 100, 220, 0.08) 100%);
+  border-color: rgba(0, 100, 220, 0.4);
+  color: var(--primary-color);
+}
+
+body.light-mode .app-header .navbar-floating .nav-button.contact-btn {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.18) 0%, rgba(0, 123, 255, 0.07) 100%);
+  border-color: rgba(0, 123, 255, 0.38);
+}
+
+body.light-mode .app-header .navbar-floating .nav-button.contact-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.32) 0%, rgba(0, 123, 255, 0.14) 100%);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 16px rgba(0, 100, 220, 0.3);
+}
+
+/* Barra móvil en modo claro */
+@media (max-width: 575.98px) {
+  body.light-mode .app-header .navbar-floating {
+    background-color: rgba(238, 242, 255, 0.94);
+    border-color: rgba(0, 90, 200, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 80, 200, 0.15);
   }
 
-  .toggle-button.visible {
-    transform: translateX(-50%) scale(1);
+  body.light-mode .app-header .navbar-floating .nav-button {
+    color: #0d1117;
   }
 
-  .toggle-button:hover {
-    transform: translateX(-50%) translateY(-3px) scale(1);
+  body.light-mode .app-header .navbar-floating .nav-button:hover {
+    background: rgba(0, 90, 200, 0.1);
+  }
+
+  body.light-mode .app-header .navbar-floating .nav-button.active {
+    background: rgba(0, 100, 220, 0.15);
+  }
+
+  body.light-mode .app-header .navbar-floating .nav-button.contact-btn {
+    background: rgba(0, 123, 255, 0.12);
   }
 }

@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, NgZone, OnDest
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ContactModalService } from '../../contact/contact-modal.service';
 
 @Component({
   selector: 'home', 
@@ -33,7 +34,11 @@ export class Home implements OnInit, AfterViewInit {
   codeIntroText: string = '';
   fullText: string = 'Hello World/>';
 
-  constructor() { } 
+  constructor(private contactModalService: ContactModalService) {}
+
+  openContactModal(): void {
+    this.contactModalService.openContactModal();
+  }
 
   ngOnInit(): void {
     this.typewriteText();

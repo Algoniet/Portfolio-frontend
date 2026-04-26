@@ -130,7 +130,9 @@ export class Navbar implements OnInit, OnDestroy {
 
   toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
-    document.body.classList.toggle('light-mode', !this.isDarkMode);
+    const isLight = !this.isDarkMode;
+    document.body.classList.toggle('light-mode', isLight);
+    document.documentElement.classList.toggle('light-mode', isLight);
     localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
   }
 
@@ -161,7 +163,9 @@ export class Navbar implements OnInit, OnDestroy {
 
     if (savedTheme) {
       this.isDarkMode = savedTheme === 'dark';
-      document.body.classList.toggle('light-mode', !this.isDarkMode);
+      const isLight = !this.isDarkMode;
+      document.body.classList.toggle('light-mode', isLight);
+      document.documentElement.classList.toggle('light-mode', isLight);
     }
 
     if (savedLang && this.displayMap[savedLang]) {

@@ -21,7 +21,8 @@
         </div>
 
         <div class="cta-buttons">
-          <a href="assets/docs/curriculum-alvaro-gomez.pdf" download="curriculum-alvaro-gomez.pdf" class="btn btn-secondary">
+          <a href="assets/docs/curriculum-alvaro-gomez.pdf" download="curriculum-alvaro-gomez.pdf" class="btn btn-glass">
+            <i class="fa-solid fa-download"></i>
             {{ 'HOME.DOWNLOAD_CV' | translate }}
           </a>
         </div>
@@ -61,8 +62,8 @@
   <div class="container">
     <h2 class="cta-title">{{ 'HOME.CTA_TITLE' | translate }}</h2>
     <p class="cta-description">{{ 'HOME.CTA_DESC' | translate }}</p>
-    <a [routerLink]="['/contact']" class="btn btn-primary cta-button">
+    <button class="btn btn-glass cta-button" (click)="openContactModal()">
       {{ 'HOME.CTA_BUTTON' | translate }} <i class="fa-solid fa-arrow-right"></i>
-    </a>
+    </button>
   </div>
 </section>

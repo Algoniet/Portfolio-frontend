@@ -7,7 +7,7 @@
   height: 100vh;
   min-height: 600px;
   max-height: 100vh;
-  background-color: rgba(0, 1, 20, 0.96);
+  background-color: var(--section-bg);
   color: var(--text-light);
   display: flex;
   flex-direction: column;
@@ -15,29 +15,6 @@
   position: relative;
 }
 
-.about-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 80% 30%, rgba(0, 123, 255, 0.16) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 65% at 15% 70%, rgba(40, 167, 69, 0.08) 0%, transparent 65%);
-  animation: blob-a 24s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.about-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 55% at 25% 20%, rgba(0, 100, 220, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 75% 80%, rgba(0, 150, 255, 0.06) 0%, transparent 65%);
-  animation: blob-b 32s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-}
 
 .about-container {
   flex: 1;
@@ -240,6 +217,9 @@
 
 .carousel-wrapper {
   overflow: hidden;
+  /* Padding top permite que las pills suban en hover sin ser cortadas */
+  padding-top: 5px;
+  margin-top: -5px;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -300,7 +280,8 @@
 .tech-pill:hover {
   background-color: rgba(0, 123, 255, 0.25);
   border-color: var(--primary-color);
-  transform: translateY(-1px);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
 
 .tech-pill .tech-icon {
@@ -325,7 +306,7 @@
   min-height: 280px;
   max-height: 280px;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .content-card {
@@ -336,6 +317,33 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  position: relative;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+/* Línea shimmer que recorre el borde superior al hacer hover */
+.content-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+  transition: left 0.55s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.content-card:hover::before {
+  left: 100%;
+}
+
+.content-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 123, 255, 0.18);
+  border-color: rgba(0, 123, 255, 0.4);
+  z-index: 2;
 }
 
 .card-header {
@@ -538,6 +546,115 @@
   .content-card:last-child {
     margin-bottom: 1rem;
   }
+}
+
+/* =========================================================================
+   LIGHT MODE
+   ========================================================================= */
+
+
+body.light-mode .about-hero {
+  border-bottom-color: rgba(0, 100, 220, 0.18);
+}
+
+body.light-mode .about-subtitle {
+  color: #1a6e38;
+}
+
+body.light-mode .lead-text {
+  color: #0d1117;
+}
+
+body.light-mode .body-text {
+  color: #4a5568;
+}
+
+body.light-mode .body-text strong {
+  color: #0d1117;
+}
+
+body.light-mode .hero-stats {
+  border-top-color: rgba(0, 100, 220, 0.15);
+}
+
+body.light-mode .stat-label {
+  color: #6b7280;
+}
+
+body.light-mode .image-glow {
+  background: radial-gradient(circle, rgba(0, 100, 220, 0.2) 0%, transparent 70%);
+}
+
+/* Carruseles */
+body.light-mode .carousel-column {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 90, 200, 0.18);
+}
+
+body.light-mode .carousel-label {
+  color: var(--primary-color);
+  border-bottom-color: rgba(0, 90, 200, 0.18);
+}
+
+body.light-mode .tech-pill {
+  background-color: rgba(0, 90, 200, 0.08);
+  border-color: rgba(0, 90, 200, 0.22);
+}
+
+body.light-mode .tech-pill:hover {
+  background-color: rgba(0, 90, 200, 0.18);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 90, 200, 0.2);
+}
+
+body.light-mode .tech-pill .tech-name {
+  color: #0d1117;
+}
+
+/* Cards de formación y experiencia */
+body.light-mode .content-card {
+  background-color: #ffffff;
+  border-color: rgba(0, 90, 200, 0.15);
+  box-shadow: 0 2px 12px rgba(0, 80, 200, 0.08);
+}
+
+body.light-mode .content-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 80, 200, 0.16), 0 0 20px rgba(0, 100, 220, 0.12);
+  border-color: rgba(0, 100, 220, 0.35);
+}
+
+body.light-mode .card-header {
+  background-color: rgba(0, 90, 200, 0.06);
+  border-bottom-color: rgba(0, 90, 200, 0.14);
+}
+
+body.light-mode .card-header h2 {
+  color: var(--primary-color);
+}
+
+body.light-mode .card-body.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 90, 200, 0.35);
+}
+
+body.light-mode .timeline-item {
+  border-bottom-color: rgba(0, 90, 200, 0.1);
+}
+
+body.light-mode .timeline-content h3 {
+  color: #0d1117;
+}
+
+body.light-mode .timeline-content .institution,
+body.light-mode .timeline-content .company {
+  color: var(--primary-color);
+}
+
+body.light-mode .timeline-content .date {
+  color: #6b7280;
+}
+
+body.light-mode .timeline-content p {
+  color: #4a5568;
 }
 
 @media (max-width: 575.98px) {

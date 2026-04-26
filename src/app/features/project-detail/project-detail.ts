@@ -19,6 +19,9 @@ export class ProjectDetail implements OnInit {
   currentIndex = 0;
   visibleCards = 3;
 
+  private touchStartX = 0;
+  private touchStartY = 0;
+
   constructor(
     private githubService: GithubService,
     private translate: TranslateService
@@ -49,6 +52,23 @@ export class ProjectDetail implements OnInit {
     }
     if (this.currentIndex > this.maxIndex) {
       this.currentIndex = this.maxIndex;
+    }
+  }
+
+  onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].clientX;
+    this.touchStartY = event.changedTouches[0].clientY;
+  }
+
+  onTouchEnd(event: TouchEvent): void {
+    const deltaX = event.changedTouches[0].clientX - this.touchStartX;
+    const deltaY = event.changedTouches[0].clientY - this.touchStartY;
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        this.nextSlide();
+      } else {
+        this.prevSlide();
+      }
     }
   }
 
