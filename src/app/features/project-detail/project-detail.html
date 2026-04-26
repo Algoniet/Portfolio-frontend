@@ -26,7 +26,9 @@
           <i class="fa-solid fa-chevron-left"></i>
         </button>
 
-        <div class="carousel-viewport">
+        <div class="carousel-viewport"
+             (touchstart)="onTouchStart($event)"
+             (touchend)="onTouchEnd($event)">
           <div class="carousel-track" [style.transform]="'translateX(-' + (currentIndex * (100 / visibleCards)) + '%)'">
             @for (project of projects; track project.title; let i = $index) {
               <div class="carousel-card" [class.active]="i === currentIndex">

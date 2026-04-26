@@ -10,28 +10,6 @@
   background-color: transparent;
 }
 
-/* Animated gradient blobs — absolutely contained inside hero */
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 65% 65% at 18% 42%, rgba(0, 123, 255, 0.22) 0%, transparent 68%),
-    radial-gradient(ellipse 55% 55% at 82% 58%, rgba(40, 167, 69, 0.10) 0%, transparent 65%);
-  animation: blob-a 20s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-.hero-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 60% at 75% 18%, rgba(0, 100, 220, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 45% at 32% 82%, rgba(0, 150, 255, 0.08) 0%, transparent 65%);
-  animation: blob-b 28s ease-in-out infinite alternate;
-  pointer-events: none;
-}
 
 .hero-section .container {
   position: relative;
@@ -90,33 +68,42 @@
 
 .hero-section .hero-text .cta-buttons { display: flex; gap: var(--spacing-md); }
 
-.hero-section .hero-text .cta-buttons .btn {
-  padding: var(--spacing-sm) var(--spacing-md);
+/* Botón glass — estilo unificado para CV y Contacto */
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--border-radius-lg);
   font-weight: 600;
-  border: 2px solid;
+  font-size: var(--font-size-base);
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 123, 255, 0.4);
+  color: var(--text-light);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
+  font-family: inherit;
 }
 
-.hero-section .hero-text .cta-buttons .btn-primary {
-  background-color: var(--primary-color);
-  color: var(--background-dark);
+.btn-glass:hover {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.35) 0%, rgba(0, 123, 255, 0.15) 100%);
   border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.35);
+  transform: translateY(-2px);
+  color: var(--text-light);
 }
 
-.hero-section .hero-text .cta-buttons .btn-primary:hover {
-  background-color: transparent;
-  color: var(--primary-color);
+.btn-glass i {
+  font-size: 0.9rem;
+  transition: transform var(--transition-speed) ease;
 }
 
-.hero-section .hero-text .cta-buttons .btn-secondary {
-  background-color: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.hero-section .hero-text .cta-buttons .btn-secondary:hover {
-  background-color: var(--primary-color);
-  color: var(--background-dark);
+.btn-glass:hover i {
+  transform: translateX(2px);
 }
 
 .hero-section .hero-text .social-links {
@@ -290,7 +277,11 @@
   line-height: 1.6;
 }
 
-.contact-cta-section .cta-button i { transition: transform var(--transition-speed) ease; }
+.contact-cta-section .cta-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+
 .contact-cta-section .cta-button:hover i { transform: translateX(5px); }
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
@@ -324,7 +315,7 @@
     margin: 0 auto;
   }
 
-  .hero-section .hero-text .cta-buttons .btn { width: 100%; }
+  .hero-section .hero-text .cta-buttons .btn-glass { width: 100%; justify-content: center; }
   .hero-section .hero-text .social-links { justify-content: center; }
   .hero-section .hero-text .tagline { font-size: var(--font-size-base); }
   .hero-section .hero-image { margin-top: var(--spacing-xl); }
@@ -344,4 +335,72 @@
   .hero-section .hero-text h1 { font-size: var(--font-size-h3); }
   .hero-section .hero-image .profile-pic { width: 220px; height: 220px; }
   .latest-section { padding-top: var(--spacing-xl); padding-bottom: calc(var(--spacing-xxl) * 2); }
+}
+
+/* =========================================================================
+   LIGHT MODE
+   ========================================================================= */
+
+
+body.light-mode .hero-section .hero-text h1 {
+  color: #0d1117;
+}
+
+body.light-mode .hero-section .hero-text .tagline {
+  color: #4a5568;
+}
+
+body.light-mode .hero-section .hero-image .profile-pic {
+  box-shadow: 0 0 30px rgba(0, 100, 220, 0.28);
+}
+
+body.light-mode .latest-section {
+  background-color: #e4eaf8;
+}
+
+body.light-mode .latest-section .latest-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 80, 200, 0.1);
+  border: 1px solid rgba(0, 90, 200, 0.12);
+}
+
+body.light-mode .latest-section .latest-card .card-title {
+  color: var(--primary-color);
+}
+
+body.light-mode .latest-section .latest-card .card-subtitle {
+  color: #0d1117;
+}
+
+body.light-mode .latest-section .latest-card .card-description {
+  color: #4a5568;
+}
+
+body.light-mode .latest-section .latest-card .card-date {
+  color: #6b7280;
+}
+
+body.light-mode .latest-section .latest-card:hover {
+  box-shadow: 0 10px 28px rgba(0, 80, 200, 0.18), 0 0 16px rgba(0, 100, 220, 0.12);
+}
+
+body.light-mode .btn-glass {
+  background: linear-gradient(135deg, rgba(0, 100, 220, 0.12) 0%, rgba(0, 100, 220, 0.05) 100%);
+  border-color: rgba(0, 100, 220, 0.3);
+  color: #0d1117;
+}
+
+body.light-mode .btn-glass:hover {
+  background: linear-gradient(135deg, rgba(0, 100, 220, 0.22) 0%, rgba(0, 100, 220, 0.1) 100%);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 18px rgba(0, 100, 220, 0.25);
+  color: var(--primary-color);
+}
+
+body.light-mode .contact-cta-section .cta-title {
+  color: var(--primary-color);
+}
+
+body.light-mode .contact-cta-section .cta-description {
+  color: #4a5568;
 }
